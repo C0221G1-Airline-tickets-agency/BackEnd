@@ -26,6 +26,8 @@ public class Employee {
     private String employeeGender;
     private String employeePhoneNumber;
     private boolean flag = true;
+    private String employeeAddress;
+    private String employeeImage;
     @OneToMany(mappedBy = "employee")
     @JsonBackReference
     private List<News> news;
