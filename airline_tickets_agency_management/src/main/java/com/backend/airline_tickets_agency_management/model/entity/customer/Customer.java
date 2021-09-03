@@ -21,13 +21,14 @@ public class Customer {
     private Long customerId;
     private String customerCode;
     private String customerName;
-    private Integer customerEmail;
+    private String customerEmail;
     private String customerPhone;
-    private String gender;
-    private String birthday;
-    private String nationality;
-    private String image;
+    private String customerGender;
+    private String customerBirthday;
+    private String customerNationality;
     private Boolean flag;
+    private String customerImage;
+    private String customerAddress;
     @OneToMany(mappedBy = "customer")
     @JsonBackReference
     private List<Ticket> tickets;
