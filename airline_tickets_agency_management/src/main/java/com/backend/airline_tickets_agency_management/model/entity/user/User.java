@@ -1,7 +1,10 @@
 package com.backend.airline_tickets_agency_management.model.entity.user;
-import com.backend.airline_tickets_agency_management.model.entity.admin.Admin;
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
 import com.backend.airline_tickets_agency_management.model.entity.employee.Employee;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,6 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "email"),
@@ -41,90 +48,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id",unique = true)
     private Employee employee;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id",unique = true)
-    private Admin admin;
-
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",unique = true)
     private Customer customer;
 
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }
