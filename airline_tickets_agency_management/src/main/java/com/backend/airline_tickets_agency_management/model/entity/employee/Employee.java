@@ -22,12 +22,13 @@ public class Employee {
     private Long employeeId;
     private String employeeCode;
     private String employeeName;
+    @Column(columnDefinition = "date")
     private String employeeBirthday;
     private String employeeGender;
     private String employeePhoneNumber;
-    private boolean flag = true;
     private String employeeAddress;
     private String employeeImage;
+    private boolean flag = true;
     @OneToMany(mappedBy = "employee")
     @JsonBackReference
     private List<News> news;
