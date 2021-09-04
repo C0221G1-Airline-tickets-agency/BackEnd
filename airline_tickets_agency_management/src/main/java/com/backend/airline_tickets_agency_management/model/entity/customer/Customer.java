@@ -24,11 +24,12 @@ public class Customer {
     private String customerEmail;
     private String customerPhone;
     private String customerGender;
+    @Column(columnDefinition = "date")
     private String customerBirthday;
     private String customerNationality;
-    private Boolean flag;
     private String customerImage;
     private String customerAddress;
+    private boolean flag;
     @OneToMany(mappedBy = "customer")
     @JsonBackReference
     private List<Ticket> tickets;
