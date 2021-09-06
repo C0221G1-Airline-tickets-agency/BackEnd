@@ -13,8 +13,6 @@ public class FlightDTO {
     private String departureTime;
     private String endTime;
     private Boolean flag = true;
-
-
     private Airline airline;
     private List<Ticket> tickets;
     private Location locationTo;

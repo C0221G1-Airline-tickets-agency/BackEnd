@@ -47,6 +47,6 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    private boolean flag = true;
+    private boolean flag  = true;
 
 }
