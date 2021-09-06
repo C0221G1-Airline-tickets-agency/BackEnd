@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Setter
@@ -23,8 +23,8 @@ public class News {
     private String newsImage;
     @Column(columnDefinition = "TEXT")
     private String newsContent;
-    private Date newsWriteDay;
-    private String NewsViews;
+    private LocalDate newsWriteDay;
+    private Long NewsViews;
     private boolean flag = true;
     @ManyToOne
     @JoinColumn(name = "employee_id")
