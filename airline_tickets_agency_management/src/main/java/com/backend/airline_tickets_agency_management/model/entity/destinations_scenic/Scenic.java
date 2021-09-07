@@ -1,4 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.destinations_scenic;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +12,11 @@ public class Scenic {
     private String ScenicName;
     private String ScenicDescription;
     private String ScenicImage;
+    private int flag;
     @ManyToOne
     @JoinColumn(name = "destination_id" )
+    @JsonIgnore
     private Destination destination;
-
     public Scenic() {
     }
 
@@ -55,5 +58,13 @@ public class Scenic {
 
     public void setDestination(Destination destination) {
         this.destination = destination;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }
