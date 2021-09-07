@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @CrossOrigin("http://localhost:4200/")
 @RequestMapping("api/reports")
@@ -22,5 +23,25 @@ public class ReportController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(reports, HttpStatus.OK);
+    }
+
+    @GetMapping("/get-statistical-one-date")
+    public ResponseEntity<List<IReportDto>> getListStatisticalOneDate(@RequestParam(defaultValue = "") String startDate,
+                                                                      @RequestParam(defaultValue = "") String endDate) {
+        List<IReportDto> reportDtoList = reportService.getListStatisticalOneDate(startDate, endDate);
+        if (reportDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/get-top-5-employee")
+    public ResponseEntity<List<IReportDto>> getTop5Employee(@RequestParam(defaultValue = "") String startDate,
+                                                            @RequestParam(defaultValue = "") String endDate) {
+        List<IReportDto> reportDtoList = reportService.getTop5Employee(startDate, endDate);
+        if (reportDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
     }
 }

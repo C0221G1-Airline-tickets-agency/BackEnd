@@ -6,4 +6,5 @@ public interface IReportDto {
     String getCustomerName();
     String getEmployeeName();
     String getTotalMoney();
+    String getQuantity();
 }

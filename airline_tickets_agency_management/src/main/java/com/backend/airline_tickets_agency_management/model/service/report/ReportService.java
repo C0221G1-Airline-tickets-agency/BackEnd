@@ -6,12 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class ReportService implements IReportService{
+public class ReportService implements IReportService {
     @Autowired
     IReportRepository reportRepository;
+
     @Override
     public List<IReportDto> getAll() {
         return reportRepository.getAll();
+    }
+
+    @Override
+    public List<IReportDto> getListStatisticalOneDate(String startDate, String endDate) {
+        return reportRepository.getListStatisticalOneDate(startDate, endDate);
+    }
+
+    @Override
+    public List<IReportDto> getTop5Employee(String startDate, String endDate) {
+        return reportRepository.getTop5Employee(startDate, endDate);
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IReportService {
     List<IReportDto>getAll();
+    List<IReportDto>getListStatisticalOneDate(String startDate, String endDate);
+    List<IReportDto>getTop5Employee(String startDate, String endDate);
 }
