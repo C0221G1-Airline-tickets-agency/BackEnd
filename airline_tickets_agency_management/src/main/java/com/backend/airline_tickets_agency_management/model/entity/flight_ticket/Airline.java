@@ -23,6 +23,7 @@ public class Airline {
     private Long airlineId;
     private String airlineName;
     private String logo;
+
     @OneToMany(mappedBy = "airline")
     @JsonIgnore
     private List<Flight> flights;
