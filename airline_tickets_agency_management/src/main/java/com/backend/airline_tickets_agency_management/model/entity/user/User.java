@@ -1,6 +1,8 @@
 package com.backend.airline_tickets_agency_management.model.entity.user;
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
 import com.backend.airline_tickets_agency_management.model.entity.employee.Employee;
+import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -55,5 +58,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",unique = true)
     private Customer customer;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Ticket> tickets;
 
 }

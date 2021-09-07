@@ -30,8 +30,5 @@ public class Customer {
     private String customerImage;
     private String customerAddress;
     private boolean flag;
-    @OneToMany(mappedBy = "customer")
-    @JsonBackReference
-    private List<Ticket> tickets;
 
 }
