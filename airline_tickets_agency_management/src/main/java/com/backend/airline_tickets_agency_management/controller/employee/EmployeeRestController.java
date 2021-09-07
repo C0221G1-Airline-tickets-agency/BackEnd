@@ -36,6 +36,9 @@ public class EmployeeRestController {
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        if (employee.isFlag()==false){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         employee.setFlag(false);
         service.save(employee);
         return new ResponseEntity<>(HttpStatus.OK);
