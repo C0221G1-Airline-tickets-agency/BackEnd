@@ -1,6 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +31,7 @@ public class Flight {
     @JoinColumn(name = "airline_id",referencedColumnName = "airline_id")
     private Airline airline;
     @OneToMany(mappedBy = "flight")
-    @JsonBackReference(value = "flight")
+    @JsonIgnore
     private List<Ticket> tickets;
     @ManyToOne
     @JoinColumn(name = "point_of_departure",referencedColumnName = "location_id")
