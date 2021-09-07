@@ -6,5 +6,5 @@ import com.backend.airline_tickets_agency_management.model.service.IGeneralServi
 import java.util.List;
 
 public interface ITicketService extends IGeneralService<Ticket> {
-    public List<Ticket> findAll();
+     List<Ticket> findAll();
 }

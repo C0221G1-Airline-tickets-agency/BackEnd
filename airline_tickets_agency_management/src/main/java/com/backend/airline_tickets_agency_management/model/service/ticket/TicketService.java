@@ -18,9 +18,7 @@ public class TicketService  implements ITicketService{
     public Page findAllWithKeyWord(Pageable pageable, String keyword) {
         return null;
     }
-    public List<Ticket> findAll() {
-        return ticketRepository.findAll();
-    }
+
 
     @Override
     public Optional findById(Long id) {
@@ -41,5 +39,10 @@ public class TicketService  implements ITicketService{
     @Override
     public void remove(Long id) {
 
+    }
+
+    @Override
+    public List<Ticket> findAll() {
+        return ticketRepository.findAll();
     }
 }
