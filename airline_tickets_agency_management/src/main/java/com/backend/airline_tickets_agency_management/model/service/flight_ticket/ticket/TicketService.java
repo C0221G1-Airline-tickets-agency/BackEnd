@@ -43,4 +43,10 @@ public class TicketService implements ITicketService {
     public Page<Ticket> findAllByFilter(String passengerName, String chairName, String cityName, String flightDate, Pageable pageable) {
         return this.ticketRepository.findAllByFilter(passengerName, chairName, cityName, flightDate, pageable);
     }
+
+    @Override
+    public List<Ticket> findAll() {
+        return ticketRepository.findAll();
+
+    }
 }
