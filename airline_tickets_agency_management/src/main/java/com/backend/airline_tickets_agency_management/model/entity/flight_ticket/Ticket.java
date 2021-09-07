@@ -1,6 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,13 +40,19 @@ public class Ticket {
     private String passengerEmail;
     @ManyToOne
     @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
+    @JsonManagedReference
     private Flight flight;
+
     @ManyToOne
     @JoinColumn(name = "ticket_status_id",referencedColumnName ="ticket_status_id" )
+    @JsonManagedReference
     private TicketStatus ticketStatus;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonManagedReference
     private Customer customer;
+
     private boolean flag = true;
 
 }

@@ -22,6 +22,7 @@ public class Airline {
     private Long airlineId;
     private String airlineName;
     private String logo;
+
     @OneToMany(mappedBy = "airline")
     @JsonBackReference
     private List<Flight> flights;
