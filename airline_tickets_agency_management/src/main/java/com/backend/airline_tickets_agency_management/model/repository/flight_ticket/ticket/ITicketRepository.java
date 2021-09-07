@@ -1,5 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.repository.flight_ticket.ticket;
 
+
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,4 +26,5 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     @Transactional
     @Query(value = "update ticket t set t.flag = 0 where t.ticket_id = ?1", nativeQuery = true)
     void deleteTicket(Long id);
+
 }

@@ -2,7 +2,7 @@ package com.backend.airline_tickets_agency_management.controller;
 
 import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.TicketDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
-import com.backend.airline_tickets_agency_management.model.service.ticket.ITicketService;
+import com.backend.airline_tickets_agency_management.model.service.flight_ticket.ticket.ITicketService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
