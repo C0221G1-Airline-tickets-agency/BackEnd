@@ -2,6 +2,7 @@ package com.backend.airline_tickets_agency_management.model.entity.flight_ticket
 
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Flight;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,11 +27,11 @@ public class Location {
     private String areaCode;
 
     @OneToMany(mappedBy = "locationTo")
-    @JsonBackReference(value = "locationTo")
+    @JsonIgnore
     List<Flight> flightsTo;
 
     @OneToMany(mappedBy = "locationFrom")
-    @JsonBackReference(value = "locationFrom")
+    @JsonIgnore
     List<Flight> flightsFrom;
 
 }

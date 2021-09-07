@@ -1,6 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,6 @@ public class Airline {
     private String logo;
 
     @OneToMany(mappedBy = "airline")
-    @JsonBackReference
+    @JsonIgnore
     private List<Flight> flights;
 }

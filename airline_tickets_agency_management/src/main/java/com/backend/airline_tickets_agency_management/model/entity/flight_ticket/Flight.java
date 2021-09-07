@@ -2,6 +2,7 @@ package com.backend.airline_tickets_agency_management.model.entity.flight_ticket
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
     private String flightCode;
+    @Column(columnDefinition = "date")
     private String flightDate;
     private String departureTime;
     private String endTime;
@@ -34,7 +36,7 @@ public class Flight {
     private Airline airline;
 
     @OneToMany(mappedBy = "flight")
-    @JsonBackReference(value = "flight")
+    @JsonIgnore
     private List<Ticket> tickets;
 
     @ManyToOne
