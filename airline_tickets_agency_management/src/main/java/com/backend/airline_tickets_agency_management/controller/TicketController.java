@@ -1,12 +1,16 @@
 package com.backend.airline_tickets_agency_management.controller;
 
+import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.TicketDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import com.backend.airline_tickets_agency_management.model.service.ticket.ITicketService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +32,19 @@ public class TicketController {
     }
 
     @PutMapping(value = "/edit/{ticketId}")
-    public ResponseEntity<Ticket> update(@PathVariable Long ticketId, @RequestBody Ticket ticket) {
-        Optional <Ticket> ticketObj = ticketService.findById(ticketId);
-        if (ticket == null) {
+    public ResponseEntity<Ticket> update(@PathVariable Long ticketId, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        if (ticketDto == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        ticketObj.get().setPassengerName(ticket.getPassengerName());
-        ticketObj.get().setPassengerEmail(ticket.getPassengerEmail());
-        ticketService.save(ticketObj.get());
+
+        ticketDto.setTicketId(ticketId);
+        Ticket ticket= new Ticket();
+        BeanUtils.copyProperties(ticketDto,ticket);
+        ticketService.save(ticket);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
