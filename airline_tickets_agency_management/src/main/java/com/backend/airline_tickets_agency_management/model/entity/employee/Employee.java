@@ -32,5 +32,4 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     @JsonBackReference
     private List<News> news;
-
 }
