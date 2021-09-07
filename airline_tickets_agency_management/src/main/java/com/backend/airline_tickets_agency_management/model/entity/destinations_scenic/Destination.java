@@ -14,6 +14,7 @@ public class Destination {
     private String destinationName;
     private String destinationDescription;
     private String destinationImage;
+    private Integer flag;
     @OneToMany(mappedBy = "destination")
     @JsonBackReference
     private List<Scenic> scenics;
@@ -58,5 +59,13 @@ public class Destination {
 
     public void setScenics(List<Scenic> scenics) {
         this.scenics = scenics;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

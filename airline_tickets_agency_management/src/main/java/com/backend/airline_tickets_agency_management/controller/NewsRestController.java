@@ -24,18 +24,18 @@ public class NewsRestController {
         this.employeeService = employeeService;
         this.newsService = newsService;
     }
-    @PostMapping(value= "")
-    public ResponseEntity<News> create(@Valid @RequestBody NewsDto newsDto) {
-        Optional<Employee> employee = employeeService.findById(newsDto.getEmployee().getEmployeeId());
-        if(employee.isPresent()){
-            News news = new News();
-            BeanUtils.copyProperties(newsDto, news);
-            this.newsService.save(news);
-            return new ResponseEntity<>(news, HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @PostMapping(value= "")
+//    public ResponseEntity<News> create(@Valid @RequestBody NewsDto newsDto) {
+//        ;
+//        if(employee.isPresent()){
+//            News news = new News();
+//            BeanUtils.copyProperties(newsDto, news);
+//            this.newsService.save(news);
+//            return new ResponseEntity<>(news, HttpStatus.OK);
+//        }else {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<News> getNews(@PathVariable Long id) {

@@ -10,6 +10,16 @@ public class Scenic {
     private String ScenicName;
     private String ScenicDescription;
     private String ScenicImage;
+    private Integer flag;
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
     @ManyToOne
     @JoinColumn(name = "destination_id" )
     private Destination destination;
