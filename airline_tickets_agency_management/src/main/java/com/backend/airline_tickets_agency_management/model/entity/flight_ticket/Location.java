@@ -25,9 +25,11 @@ public class Location {
     private String cityName;
     private String airportName;
     private String areaCode;
+
     @OneToMany(mappedBy = "locationTo")
     @JsonIgnore
     List<Flight> flightsTo;
+
     @OneToMany(mappedBy = "locationFrom")
     @JsonIgnore
     List<Flight> flightsFrom;
