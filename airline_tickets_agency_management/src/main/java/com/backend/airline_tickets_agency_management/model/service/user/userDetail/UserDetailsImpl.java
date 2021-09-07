@@ -19,8 +19,6 @@ public class UserDetailsImpl implements UserDetails {
 
     private String username;
 
-    private String email;
-
     private String usercode;
 
     private Boolean isEnabled;
@@ -35,12 +33,11 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(Long id, String username,
-                           String email, String usercode, Boolean isEnabled,
+                           String usercode, Boolean isEnabled,
                            Employee employee, Customer customer, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
-        this.email = email;
         this.usercode = usercode;
         this.isEnabled = isEnabled;
         this.employee = employee;
@@ -57,7 +54,6 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(
                 user.getUserId(),
                 user.getUserName(),
-                user.getEmail(),
                 user.getUserCode(),
                 user.getEnabled(),
                 user.getEmployee(),
@@ -117,15 +113,6 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setUsername(String username) {

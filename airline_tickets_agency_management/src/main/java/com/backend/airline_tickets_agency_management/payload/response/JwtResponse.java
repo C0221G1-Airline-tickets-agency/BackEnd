@@ -10,7 +10,6 @@ public class JwtResponse {
     private String type = "Bearer";
     private Long id;
     private String username;
-    private String email;
     private List<String> roles;
     private Boolean isEnabled;
     private Employee employee;
@@ -25,12 +24,11 @@ public class JwtResponse {
     }
 
     public JwtResponse(String token, Long id, String username,
-                       Boolean isEnabled,String email,Employee employee, Customer customer ,List<String> roles) {
+                       Boolean isEnabled,Employee employee, Customer customer ,List<String> roles) {
         this.token = token;
         this.id = id;
         this.username = username;
         this.isEnabled = isEnabled;
-        this.email = email;
         this.employee = employee;
         this.customer = customer;
         this.roles = roles;
@@ -60,13 +58,6 @@ public class JwtResponse {
         isEnabled = enabled;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getToken() {
         return token;

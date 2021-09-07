@@ -16,11 +16,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "email"),
+                @UniqueConstraint(columnNames = "username"),
         })
 public class User {
     @Id
@@ -28,14 +27,10 @@ public class User {
     private Long userId;
 
     @NotBlank
-    @Size(max = 20)
+    @Email
     private String userName;
 
-    @NotBlank
-    @Email
-    private String email;
-
-    @Size(max = 20)
+//    @Size(max = 20)
     private String userCode;
 
     @NotBlank
@@ -83,14 +78,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getUserCode() {

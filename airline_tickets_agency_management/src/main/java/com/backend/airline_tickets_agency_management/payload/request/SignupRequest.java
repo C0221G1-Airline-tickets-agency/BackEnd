@@ -7,14 +7,10 @@ import java.util.Set;
 
 public class SignupRequest {
     @NotBlank
-    @Size(min = 3, max = 20)
+    @Email
     private String username;
 
-    @NotBlank
-    @Email
-    private String email;
-
-    @Size(max = 50)
+//    @Size(max = 50)
     private String userCode;
     private Boolean isEnabled;
 
@@ -24,13 +20,6 @@ public class SignupRequest {
     @Size(min = 6, max = 40)
     private String password;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getUsername() {
         return username;

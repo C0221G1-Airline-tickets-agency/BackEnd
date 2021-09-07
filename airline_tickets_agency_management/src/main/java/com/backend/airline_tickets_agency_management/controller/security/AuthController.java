@@ -78,7 +78,6 @@ public class AuthController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEnabled(),
-                userDetails.getEmail(),
                 userDetails.getEmployee(),
                 userDetails.getCustomer(),
                 roles));
@@ -96,9 +95,8 @@ public class AuthController {
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()));
-        user.setEmail(signUpRequest.getEmail());
-        String newUserCode = this.autoIncrement();
-        user.setUserCode(newUserCode);
+//        String newUserCode = this.autoIncrement();
+//        user.setUserCode(newUserCode);
         user.setEnabled(false);
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -155,32 +153,32 @@ public class AuthController {
         this.emailSender.send(message);
     }
 
-    @GetMapping("email/success/{email}")
-    public String accuracyEmail(@PathVariable Optional<String> email){
-        String getEmail = email.orElse("");
-        User user = this.userRepository.findUser(getEmail);
-        user.setEnabled(true);
-        this.userRepository.save(user);
-        return "Kích hoạt tài khoản thành công!";
-    }
+//    @GetMapping("email/success/{email}")
+//    public String accuracyEmail(@PathVariable Optional<String> email){
+//        String getEmail = email.orElse("");
+//        User user = this.userRepository.findUser(getEmail);
+//        user.setEnabled(true);
+//        this.userRepository.save(user);
+//        return "Kích hoạt tài khoản thành công!";
+//    }
 
 
 
-    public String autoIncrement(){
-        String code = "KH-";
-        String regex = "^KH-[0-9]{4}$";
-        int total = this.userRepository.totalOfRecordKH();
-        String id = "";
-        while (true){
-            id = code + (total +1);
-            if (id.matches(regex)){
-                break;
-            }
-            code += 0;
-            id = "";
-        }
-        return id;
-    }
+//    public String autoIncrement(){
+//        String code = "KH-";
+//        String regex = "^KH-[0-9]{4}$";
+//        int total = this.userRepository.totalOfRecordKH();
+//        String id = "";
+//        while (true){
+//            id = code + (total +1);
+//            if (id.matches(regex)){
+//                break;
+//            }
+//            code += 0;
+//            id = "";
+//        }
+//        return id;
+//    }
 
 
 }
