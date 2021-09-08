@@ -58,6 +58,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",unique = true)
     private Customer customer;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Ticket> tickets;

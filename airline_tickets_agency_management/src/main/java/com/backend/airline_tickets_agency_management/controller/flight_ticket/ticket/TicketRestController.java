@@ -47,8 +47,8 @@ public class TicketRestController {
         this.ticketService.remove(id);
         return new ResponseEntity<>(ticket,HttpStatus.OK);
     }
-    @PutMapping(value = "/edit/{ticketId}")
-    public ResponseEntity<Ticket> update(@PathVariable Long ticketId, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+    @PutMapping(value = "ticket-edit/{id}")
+    public ResponseEntity<Ticket> update(@PathVariable Long id, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -56,8 +56,7 @@ public class TicketRestController {
         if (ticketDto == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
-        ticketDto.setTicketId(ticketId);
+        ticketDto.setTicketId(id);
         Ticket ticket= new Ticket();
         BeanUtils.copyProperties(ticketDto,ticket);
         ticketService.save(ticket);
@@ -71,4 +70,5 @@ public class TicketRestController {
         }
         return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
     }
+
 }
