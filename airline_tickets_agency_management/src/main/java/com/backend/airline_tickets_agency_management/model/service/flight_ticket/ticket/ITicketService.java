@@ -5,6 +5,8 @@ import com.backend.airline_tickets_agency_management.model.service.IGeneralServi
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ITicketService extends IGeneralService<Ticket> {
     Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable);
 }

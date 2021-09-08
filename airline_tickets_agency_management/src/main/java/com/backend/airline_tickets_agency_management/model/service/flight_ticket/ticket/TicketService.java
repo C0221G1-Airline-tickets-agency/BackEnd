@@ -44,5 +44,4 @@ public class TicketService implements ITicketService {
         return this.ticketRepository.findAllByFilter(passengerName, ticketCode, cityName, flightDate, pageable);
     }
 
-   
 }
