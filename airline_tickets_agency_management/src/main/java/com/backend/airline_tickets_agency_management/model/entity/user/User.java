@@ -55,6 +55,8 @@ public class User {
     @JoinColumn(name = "customer_id",unique = true)
     private Customer customer;
 
+    private Long customerTempId;
+
     public User() {
     }
 
@@ -126,5 +128,13 @@ public class User {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Long getCustomerTempId() {
+        return customerTempId;
+    }
+
+    public void setCustomerTempId(Long customerTempId) {
+        this.customerTempId = customerTempId;
     }
 }

@@ -1,5 +1,8 @@
 package com.backend.airline_tickets_agency_management.controller.security;
 
+import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
+import com.backend.airline_tickets_agency_management.model.repository.customer.ICustomerRepository;
+import com.backend.airline_tickets_agency_management.model.service.customer.ICustomerService;
 import com.backend.airline_tickets_agency_management.model.service.user.userDetail.UserDetailsImpl;
 import com.backend.airline_tickets_agency_management.model.entity.user.ERole;
 import com.backend.airline_tickets_agency_management.model.entity.user.Role;
@@ -56,6 +59,9 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    ICustomerService customerService;
+
 
     final String ERORR_MSG = "Error: Role is not found.";
 
@@ -72,14 +78,14 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
+        Customer customer = this.customerService.findCustomerById(userDetails.getCustomerTempId());
 
-        System.out.println(userDetails.getEmployee());
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEnabled(),
                 userDetails.getEmployee(),
-                userDetails.getCustomer(),
+                customer,
                 roles));
     }
 
@@ -95,11 +101,23 @@ public class AuthController {
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()));
-//        String newUserCode = this.autoIncrement();
-//        user.setUserCode(newUserCode);
+        String newUserCode = this.codeIncrement();
+        user.setUserCode(newUserCode);
         user.setEnabled(false);
+        List<Customer> customerList = this.customerService.findAllNormal();
+        Long newCustomerId;
+        System.out.println(customerList == null);
+        if (customerList.size() == 0) {
+            newCustomerId = 1L;
+        } else {
+            newCustomerId = customerList.get(customerList.size() - 1).getCustomerId() + 1;
+        }
+        user.setCustomerTempId(newCustomerId);
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
+
+        this.customerService.insertCustomer(signUpRequest.getAddress(), signUpRequest.getBirthday(), newUserCode,signUpRequest.getUsername(),
+                signUpRequest.getGender(), signUpRequest.getName(), signUpRequest.getNationality(), signUpRequest.getPhone(), true, signUpRequest.getPassport());
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -134,35 +152,49 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-    @GetMapping("email/send/{name}/{email}")
-    public void sendEmail(@PathVariable Optional<String> name,
-                          @PathVariable Optional<String> email) {
+    @GetMapping("email/verify/{username}")
+    public void sendEmail(@PathVariable Optional<String> username) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dayPlusAWeek = LocalDate.now();
         String day = formatter.format(dayPlusAWeek);
 
-        String sendEmail = email.orElse("");
+        String sendEmail = username.orElse("");
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(sendEmail);
-        message.setSubject("Xác thực tài khoản của C0221G1_Pharmacy!!!");
-        message.setText("Chào " + name.orElse("") + "\n"
+        message.setSubject("Xác thực tài khoản Phòng Vé C0221G1.");
+        message.setText("Chào " + username.orElse("") + "\n"
                 + "Vui lòng xác nhận đăng ký tài khoản. " + "\n"
-                + "Click đường để hoàn thành đăng ký : http://localhost:8080/api/auth/email/success/"+sendEmail);
+                + "Click đường để hoàn thành đăng ký : http://localhost:8080/api/auth/email/success/" + sendEmail);
 
         this.emailSender.send(message);
     }
 
-//    @GetMapping("email/success/{email}")
-//    public String accuracyEmail(@PathVariable Optional<String> email){
-//        String getEmail = email.orElse("");
-//        User user = this.userRepository.findUser(getEmail);
-//        user.setEnabled(true);
-//        this.userRepository.save(user);
-//        return "Kích hoạt tài khoản thành công!";
-//    }
+    @GetMapping("email/success/{username}")
+    public String accuracyEmail(@PathVariable Optional<String> username) {
+        String getEmail = username.orElse("");
+        User user = this.userRepository.findByUserName(getEmail);
+        user.setEnabled(true);
+        this.userRepository.save(user);
+        return "Kích hoạt tài khoản thành công!";
+    }
 
-
+    public String codeIncrement() {
+        List<Customer> customerList = this.customerService.findAllNormal();
+        String code = "";
+        if (customerList.isEmpty()) {
+            code = "KH001";
+        } else {
+            Long lastId = customerList.get(customerList.size() - 1).getCustomerId();
+            if (lastId < 10) {
+                code = "KH00" + (lastId + 1);
+            } else if (lastId < 100) {
+                code = "KH0" + (lastId + 1);
+            }
+        }
+        return code;
+    }
+}
 
 //    public String autoIncrement(){
 //        String code = "KH-";
@@ -181,4 +213,3 @@ public class AuthController {
 //    }
 
 
-}

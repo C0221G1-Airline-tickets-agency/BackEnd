@@ -25,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private Employee employee;
 
-    private Customer customer;
+    private Long customerTempId;
 
     @JsonIgnore
     private String password;
@@ -34,14 +34,14 @@ public class UserDetailsImpl implements UserDetails {
 
     public UserDetailsImpl(Long id, String username,
                            String usercode, Boolean isEnabled,
-                           Employee employee, Customer customer, String password,
+                           Employee employee, Long customerTempId, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.usercode = usercode;
         this.isEnabled = isEnabled;
         this.employee = employee;
-        this.customer = customer;
+        this.customerTempId = customerTempId;
         this.password = password;
         this.authorities = authorities;
     }
@@ -57,17 +57,17 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUserCode(),
                 user.getEnabled(),
                 user.getEmployee(),
-                user.getCustomer(),
+                user.getCustomerTempId(),
                 user.getPassword(),
                 authorities);
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getCustomerTempId() {
+        return customerTempId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerTempId(Long customerTempId) {
+        this.customerTempId = customerTempId;
     }
 
     public Employee getEmployee() {
