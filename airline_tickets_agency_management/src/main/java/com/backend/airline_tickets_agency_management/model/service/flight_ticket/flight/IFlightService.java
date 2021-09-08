@@ -4,7 +4,6 @@ import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface IFlightService {
     Page<Flight> findAllFlightPage(Pageable pageable);

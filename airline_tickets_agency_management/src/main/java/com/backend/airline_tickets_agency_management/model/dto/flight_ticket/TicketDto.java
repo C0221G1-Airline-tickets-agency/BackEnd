@@ -6,7 +6,6 @@ import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

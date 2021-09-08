@@ -11,7 +11,6 @@ import java.util.List;
 public interface ITicketService extends IGeneralService<Ticket> {
     Page<Ticket> findAllByFilter(String passengerName, String chairName, String cityName, String flightDate, Pageable pageable);
 
-//    DucDM
 void updateTicketCancel(Long id);
     void updateTicketPaid(Long id);
     List<TicketCustomerDto> findAllTicketCustomerBook(Long id, Integer index);

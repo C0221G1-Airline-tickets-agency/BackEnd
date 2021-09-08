@@ -29,7 +29,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     @Query(value = "update ticket t set t.flag = 0 where t.ticket_id = ?1", nativeQuery = true)
     void deleteTicket(Long id);
 
-    //    DucDM
+
     @Modifying
     @Transactional
     @Query(value = "update ticket set ticket_status_id = 3 where ticket_id = ?", nativeQuery = true)
@@ -50,7 +50,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "LEFT JOIN location lFrom on f.destination = lFrom.location_id\n" +
             "LEFT JOIN location lTo on f.point_of_departure = lTo.location_id\n" +
             "LEFT JOIN `user` us on us.user_id = t.user_id\n" +
-            "WHERE us.customer_id = ?1  and t.ticket_status_id = 1" +
+            "WHERE us.customer_id = ?1 and t.ticket_status_id = '1'" +
             "LIMIT ?2,5", nativeQuery = true)
     List<TicketCustomerDto> findAllTicketCustomerBook(Long id, Integer index);
 

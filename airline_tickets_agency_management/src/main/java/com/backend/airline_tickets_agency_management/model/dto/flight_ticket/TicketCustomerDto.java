@@ -7,6 +7,7 @@ public interface TicketCustomerDto {
     String getDestination();
     String getBookingDate();
     String getFlightDate();
-    String getPriceSell();
+    Double getPriceSell();
     String getTicketStatusName();
+
 }

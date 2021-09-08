@@ -3,7 +3,6 @@ package com.backend.airline_tickets_agency_management.model.service.flight_ticke
 import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.TicketCustomerDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import com.backend.airline_tickets_agency_management.model.repository.flight_ticket.ticket.ITicketRepository;
-import com.backend.airline_tickets_agency_management.model.service.flight_ticket.ticket.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,7 +44,6 @@ public class TicketService implements ITicketService {
         return this.ticketRepository.findAllByFilter(passengerName, chairName, cityName, flightDate, pageable);
     }
 
-    //DucDM
     @Override
     public void updateTicketCancel(Long id) {
         ticketRepository.updateTicketCancel(id);
