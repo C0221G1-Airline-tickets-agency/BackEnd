@@ -29,6 +29,7 @@ public class Customer {
     private String customerNationality;
     private String customerImage;
     private String customerAddress;
+    private String customerPassport;
     private boolean flag;
     @OneToMany(mappedBy = "customer")
     @JsonBackReference

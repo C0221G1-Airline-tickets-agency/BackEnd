@@ -19,15 +19,13 @@ public class UserDetailsImpl implements UserDetails {
 
     private String username;
 
-    private String email;
-
     private String usercode;
 
     private Boolean isEnabled;
 
     private Employee employee;
 
-    private Customer customer;
+    private Long customerTempId;
 
     @JsonIgnore
     private String password;
@@ -35,16 +33,15 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(Long id, String username,
-                           String email, String usercode, Boolean isEnabled,
-                           Employee employee, Customer customer, String password,
+                           String usercode, Boolean isEnabled,
+                           Employee employee, Long customerTempId, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
-        this.email = email;
         this.usercode = usercode;
         this.isEnabled = isEnabled;
         this.employee = employee;
-        this.customer = customer;
+        this.customerTempId = customerTempId;
         this.password = password;
         this.authorities = authorities;
     }
@@ -57,21 +54,20 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(
                 user.getUserId(),
                 user.getUserName(),
-                user.getEmail(),
                 user.getUserCode(),
                 user.getEnabled(),
                 user.getEmployee(),
-                user.getCustomer(),
+                user.getCustomerTempId(),
                 user.getPassword(),
                 authorities);
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getCustomerTempId() {
+        return customerTempId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerTempId(Long customerTempId) {
+        this.customerTempId = customerTempId;
     }
 
     public Employee getEmployee() {
@@ -117,15 +113,6 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setUsername(String username) {
