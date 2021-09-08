@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class CustomerDto {
     @Size(min= 6,message = "Tên ít nhất 6 ký tự")
     private String customerName;
     @NotBlank(message = "Email không được để trống")
+    @Email
     private String customerEmail;
     @NotBlank(message = "Số điện thoại không được để trống")
     private String customerPhone;
@@ -24,6 +27,7 @@ public class CustomerDto {
     private String customerBirthday;
     private String customerNationality;
     private String customerImage;
+    @NotBlank
     private String customerAddress;
     @NotBlank(message = "Không được để trống")
     private String customerPassport;
