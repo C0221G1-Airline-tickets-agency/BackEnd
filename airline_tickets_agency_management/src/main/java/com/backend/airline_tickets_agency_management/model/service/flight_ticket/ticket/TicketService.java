@@ -2,7 +2,6 @@ package com.backend.airline_tickets_agency_management.model.service.flight_ticke
 
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import com.backend.airline_tickets_agency_management.model.repository.flight_ticket.ticket.ITicketRepository;
-import com.backend.airline_tickets_agency_management.model.service.flight_ticket.ticket.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +31,7 @@ public class TicketService implements ITicketService {
 
     @Override
     public void save(Ticket ticket) {
+        this.ticketRepository.save(ticket);
     }
 
     @Override
@@ -40,7 +40,9 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Page<Ticket> findAllByFilter(String passengerName, String chairName, String cityName, String flightDate, Pageable pageable) {
-        return this.ticketRepository.findAllByFilter(passengerName, chairName, cityName, flightDate, pageable);
+    public Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable) {
+        return this.ticketRepository.findAllByFilter(passengerName, ticketCode, cityName, flightDate, pageable);
     }
+
+   
 }

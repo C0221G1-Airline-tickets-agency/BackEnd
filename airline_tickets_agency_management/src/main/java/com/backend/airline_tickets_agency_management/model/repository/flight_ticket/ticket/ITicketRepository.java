@@ -15,11 +15,11 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "join location l1 on f.destination = l1.location_id " +
             "join location l2 on f.point_of_departure = l2.location_id " +
             "where t.passenger_name like %?1% " +
-            "and t.chair_name like %?2% " +
+            "and t.ticket_code like %?2% " +
             "and (l1.city_name like %?3% or l2.city_name like %?3%) " +
             "and f.flight_date like %?4% " +
             "and t.flag = 1", nativeQuery = true)
-    Page<Ticket> findAllByFilter(String passengerName, String chairName, String cityName, String flightDate, Pageable pageable);
+    Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable);
 
     @Modifying
     @Transactional
