@@ -1,6 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.dto.destination;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 public class DestinatonDto {
     private Long destinationId;
@@ -10,15 +11,17 @@ public class DestinatonDto {
     private String destinationDescription;
     @NotEmpty
     private String destinationImage;
+    private List<ScenicDto> listScenic;
 
 
     public DestinatonDto() {
     }
 
-    public DestinatonDto(String destinationName, String destinationDescription, String destinationImage) {
+    public DestinatonDto(@NotEmpty String destinationName, @NotEmpty String destinationDescription, @NotEmpty String destinationImage, List<ScenicDto> listScenic) {
         this.destinationName = destinationName;
         this.destinationDescription = destinationDescription;
         this.destinationImage = destinationImage;
+        this.listScenic = listScenic;
     }
 
     public Long getDestinationId() {
@@ -51,5 +54,13 @@ public class DestinatonDto {
 
     public void setDestinationImage(String destinationImage) {
         this.destinationImage = destinationImage;
+    }
+
+    public List<ScenicDto> getListScenic() {
+        return listScenic;
+    }
+
+    public void setListScenic(List<ScenicDto> listScenic) {
+        this.listScenic = listScenic;
     }
 }

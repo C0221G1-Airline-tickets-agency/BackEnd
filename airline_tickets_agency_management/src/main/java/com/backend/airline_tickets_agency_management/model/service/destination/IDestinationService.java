@@ -12,5 +12,7 @@ import java.util.Optional;
 public interface IDestinationService {
     Optional<Destination> findById(Long id);
 
-    Map<String,Object> save(DestinatonDto destinatonDto, BindingResult bindingResult, ScenicDto[] listScenic);
+    Map<String,Object> save(DestinatonDto destinatonDto, BindingResult bindingResult);
+
+    Map<String,Object> update(DestinatonDto destinatonDto, BindingResult bindingResult);
 }

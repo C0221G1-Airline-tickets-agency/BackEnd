@@ -14,7 +14,7 @@ public class Destination {
     private String destinationName;
     private String destinationDescription;
     private String destinationImage;
-    private int flag;
+    private Integer flag;
     @OneToMany(mappedBy = "destination")
     private List<Scenic> scenics;
     public Destination() {
@@ -60,11 +60,11 @@ public class Destination {
         this.scenics = scenics;
     }
 
-    public int getFlag() {
+    public Integer getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(Integer flag) {
         this.flag = flag;
     }
 }

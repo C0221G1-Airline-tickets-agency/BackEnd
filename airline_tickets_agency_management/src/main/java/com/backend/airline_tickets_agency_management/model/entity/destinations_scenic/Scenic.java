@@ -12,7 +12,7 @@ public class Scenic {
     private String ScenicName;
     private String ScenicDescription;
     private String ScenicImage;
-    private int flag;
+    private Integer flag;
     @ManyToOne
     @JoinColumn(name = "destination_id" )
     @JsonIgnore
@@ -60,11 +60,11 @@ public class Scenic {
         this.destination = destination;
     }
 
-    public int getFlag() {
+    public Integer getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(Integer flag) {
         this.flag = flag;
     }
 }
