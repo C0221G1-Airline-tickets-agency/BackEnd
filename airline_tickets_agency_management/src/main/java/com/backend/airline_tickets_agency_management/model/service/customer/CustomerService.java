@@ -27,7 +27,7 @@ public class CustomerService implements ICustomerService {
       } else if("email".equals(fieldSearch)){
           return iCustomerRepository.searchCustomerByEmail("%" + search + "%", pageable);
       }else {
-          return iCustomerRepository.searchCustomerByCode("%" + search + "%", pageable);
+          return iCustomerRepository.searchCustomerByBirthday("%" + search + "%", pageable);
       }
     }
 

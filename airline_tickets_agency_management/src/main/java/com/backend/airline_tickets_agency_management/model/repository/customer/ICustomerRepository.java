@@ -20,8 +20,12 @@ public interface ICustomerRepository extends PagingAndSortingRepository<Customer
     Page<Customer> searchCustomerByName( String search, Pageable pageable);
     @Query(value = "select * from customer where customer_email like:keyword and  flag = true " ,nativeQuery = true)
     Page<Customer> searchCustomerByEmail(@Param("keyword") String search, Pageable pageable);
+
     @Query(value = "select * from customer where customer_code like ?1 and  flag = true " ,nativeQuery = true)
     Page<Customer> searchCustomerByCode( String search, Pageable pageable);
+
+    @Query(value = "select * from customer where customer_birthday like ?1 and  flag = true " ,nativeQuery = true)
+    Page<Customer> searchCustomerByBirthday( String search, Pageable pageable);
 
     //Toàn code
     @Query(value = "select * from customer ",nativeQuery = true)
@@ -29,4 +33,7 @@ public interface ICustomerRepository extends PagingAndSortingRepository<Customer
 
     @Query(value = "select * from customer where customer_id = ?1",nativeQuery = true)
     Customer findCustomerById(Long id);
+
+
+
 }
