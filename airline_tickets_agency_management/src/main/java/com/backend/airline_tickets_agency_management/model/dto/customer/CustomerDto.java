@@ -25,7 +25,9 @@ public class CustomerDto {
     private String customerNationality;
     private String customerImage;
     private String customerAddress;
-    private boolean flag;
+    @NotBlank(message = "Không được để trống")
+    private String customerPassport;
+    private Boolean flag = true;
     private List<Ticket> tickets;
 
     public CustomerDto() {
@@ -34,8 +36,7 @@ public class CustomerDto {
     public CustomerDto(Long customerId, String customerCode, String customerName,
                        String customerEmail, String customerPhone, String customerGender,
                        String customerBirthday, String customerNationality,
-                       String customerImage, String customerAddress, boolean flag,
-                       List<Ticket> tickets) {
+                       String customerImage, String customerAddress, String customerPassport, boolean flag, List<Ticket> tickets) {
         this.customerId = customerId;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -46,8 +47,17 @@ public class CustomerDto {
         this.customerNationality = customerNationality;
         this.customerImage = customerImage;
         this.customerAddress = customerAddress;
+        this.customerPassport = customerPassport;
         this.flag = flag;
         this.tickets = tickets;
+    }
+
+    public String getCustomerPassport() {
+        return customerPassport;
+    }
+
+    public void setCustomerPassport(String customerPassport) {
+        this.customerPassport = customerPassport;
     }
 
     public Long getCustomerId() {

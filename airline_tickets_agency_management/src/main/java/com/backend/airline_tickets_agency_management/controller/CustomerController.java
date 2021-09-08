@@ -58,6 +58,7 @@ public class CustomerController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
+            customerDto.setFlag(true);
             BeanUtils.copyProperties(customerDto, customer);
             return new ResponseEntity<>(this.iCustomerService.saveCustomer(customer), HttpStatus.OK);
         }
