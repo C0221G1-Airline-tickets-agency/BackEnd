@@ -32,7 +32,6 @@ public class Flight {
 
     @ManyToOne
     @JoinColumn(name = "airline_id",referencedColumnName = "airline_id")
-    @JsonManagedReference
     private Airline airline;
 
     @OneToMany(mappedBy = "flight")
@@ -41,12 +40,10 @@ public class Flight {
 
     @ManyToOne
     @JoinColumn(name = "point_of_departure",referencedColumnName = "location_id")
-    @JsonManagedReference
     private Location locationTo;
 
     @ManyToOne
     @JoinColumn(name = "destination",referencedColumnName = "location_id")
-    @JsonManagedReference
     private Location locationFrom;
 
 }

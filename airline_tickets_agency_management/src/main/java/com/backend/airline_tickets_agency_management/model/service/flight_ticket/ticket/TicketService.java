@@ -32,6 +32,7 @@ public class TicketService implements ITicketService {
 
     @Override
     public void save(Ticket ticket) {
+        this.ticketRepository.save(ticket);
     }
 
     @Override
@@ -44,9 +45,5 @@ public class TicketService implements ITicketService {
         return this.ticketRepository.findAllByFilter(passengerName, chairName, cityName, flightDate, pageable);
     }
 
-    @Override
-    public List<Ticket> findAll() {
-        return ticketRepository.findAll();
 
-    }
 }
