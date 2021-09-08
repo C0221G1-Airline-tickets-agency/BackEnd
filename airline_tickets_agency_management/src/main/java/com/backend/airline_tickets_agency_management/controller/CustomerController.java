@@ -23,26 +23,29 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     ICustomerService iCustomerService;
+
     @GetMapping("/list")
-    public Page<Customer> ShowPageCustomer(@RequestParam(defaultValue = "0") int page){
-        return iCustomerService.showListCustomer(PageRequest.of(page,5));
+    public Page<Customer> ShowPageCustomer(@RequestParam(defaultValue = "0") int page) {
+        return iCustomerService.showListCustomer(PageRequest.of(page, 5));
     }
+
     @GetMapping("/search")
-    public Page<Customer> searchPageCustomer(@RequestParam(defaultValue = "0") int page ,
+    public Page<Customer> searchPageCustomer(@RequestParam(defaultValue = "0") int page,
                                              @RequestParam Optional<String> field,
-                                             @RequestParam Optional<String> search){
+                                             @RequestParam Optional<String> search) {
         String fieldSearch = "";
         String valueSearch = "";
-        if (field.isPresent()){
+        if (field.isPresent()) {
             fieldSearch = field.get();
         }
-        if (search.isPresent()){
+        if (search.isPresent()) {
             valueSearch = search.get();
         }
-        return iCustomerService.searchPageCustomer(PageRequest.of(page,5), fieldSearch, valueSearch);
+        return iCustomerService.searchPageCustomer(PageRequest.of(page, 5), fieldSearch, valueSearch);
     }
+
     @PatchMapping("/delete")
-    public void DeleteCustomer(@RequestBody Customer customer){
+    public void DeleteCustomer(@RequestBody Customer customer) {
         customer.setFlag(false);
         iCustomerService.saveCustomer(customer);
     }
@@ -50,29 +53,41 @@ public class CustomerController {
     //Toàn code
     @PostMapping("/create")
     public ResponseEntity<Customer> createCustomer(@Valid @RequestBody CustomerDto customerDto,
-                                                   BindingResult bindingResult){
+                                                   BindingResult bindingResult) {
         Customer customer = new Customer();
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            BeanUtils.copyProperties(customerDto, customer);
+            return new ResponseEntity<>(this.iCustomerService.saveCustomer(customer), HttpStatus.OK);
         }
-        BeanUtils.copyProperties(customerDto,customer);
-        return new ResponseEntity<>(this.iCustomerService.saveCustomer(customer),HttpStatus.OK);
     }
 
-    @PutMapping("update/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id,@Valid @RequestBody CustomerDto customerDto,
-                                                   BindingResult bindingResult){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,
+                                                   BindingResult bindingResult) {
         Customer customer = this.iCustomerService.findCustomerById(id);
-        if (customer == null){
+        if (customer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Customer customer1 = new Customer();
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            customerDto.setCustomerId(customer.getCustomerId());
+            BeanUtils.copyProperties(customerDto, customer1);
+            return new ResponseEntity<>(this.iCustomerService.updateCustomer(customer1), HttpStatus.OK);
         }
-        customerDto.setCustomerId(customer.getCustomerId());
-        BeanUtils.copyProperties(customerDto,customer1);
-        return new ResponseEntity<>(this.iCustomerService.updateCustomer(customer1),HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> findById(@PathVariable Long id){
+        Customer customer = this.iCustomerService.findCustomerById(id);
+        if (customer == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(customer,HttpStatus.OK);
+        }
     }
 
 }

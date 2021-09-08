@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CustomerDto {
     private Long customerId;
-    @NotBlank(message = "Mã code không được để trống")
     private String customerCode;
     @NotBlank(message = "Tên không được để trống")
     @Size(min= 6,message = "Tên ít nhất 6 ký tự")
