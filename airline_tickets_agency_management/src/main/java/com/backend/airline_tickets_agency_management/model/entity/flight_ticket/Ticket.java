@@ -41,12 +41,10 @@ public class Ticket {
     private String passengerEmail;
     @ManyToOne
     @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
-    @JsonManagedReference
     private Flight flight;
 
     @ManyToOne
     @JoinColumn(name = "ticket_status_id",referencedColumnName ="ticket_status_id" )
-    @JsonManagedReference
     private TicketStatus ticketStatus;
 
     @ManyToOne
