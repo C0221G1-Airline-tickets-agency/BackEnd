@@ -18,6 +18,10 @@ public class Ticket {
     private Double ticketTypePrice;
     private Double ticketPrice;
     private Double tax;
+
+    private String chairName;
+    @Column(columnDefinition = "date")
+
     private String bookingDate;
     private Integer checkInBaggage;
     private Integer carryOnBaggage;

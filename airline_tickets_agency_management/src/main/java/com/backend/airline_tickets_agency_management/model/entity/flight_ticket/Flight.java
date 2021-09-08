@@ -13,6 +13,7 @@ public class Flight {
     @Column(name = "flight_id")
     private Long flightId;
     private String flightCode;
+    @Column(columnDefinition = "date")
     private String flightDate;
     private String departureTime;
     private String endTime;

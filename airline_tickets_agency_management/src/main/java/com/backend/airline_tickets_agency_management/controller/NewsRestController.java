@@ -13,10 +13,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -36,6 +40,21 @@ public class NewsRestController {
         Optional<Employee> employee = employeeService.findById(newsDto.getEmployee().getEmployeeId());
         if (employee.isPresent()) {
             News news = new News();
+            BeanUtils.copyProperties(newsDto, news);
+            this.newsService.save(news);
+            return new ResponseEntity<>(news, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<News> update(@Valid @RequestBody NewsDto newsDto, @PathVariable Long id) {
+        Optional<News> newsEntity = this.newsService.findById(id);
+        Optional<Employee> employee = employeeService.findById(newsDto.getEmployee().getEmployeeId());
+        Optional<Category> category = newsService.getCategoryById(newsDto.getCategory().getCategoryId());
+        if (employee.isPresent() && newsEntity.isPresent() && category.isPresent()) {
+            News news = newsEntity.get();
             BeanUtils.copyProperties(newsDto, news);
             this.newsService.save(news);
             return new ResponseEntity<>(news, HttpStatus.OK);
@@ -67,9 +86,9 @@ public class NewsRestController {
 
 
     @GetMapping(value = "/update-views/{id}")
-    public ResponseEntity<News> updateViews(@PathVariable Long id ) {
+    public ResponseEntity<News> updateViews(@PathVariable Long id) {
         News newsOptional = this.newsService.findById(id).orElse(null);
-        if (newsOptional== null) {
+        if (newsOptional == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -103,8 +122,8 @@ public class NewsRestController {
         if (news == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if(news.isFlag()==false){
-            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (news.isFlag() == false) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         news.setFlag(false);
         this.newsService.save(news);
@@ -112,4 +131,16 @@ public class NewsRestController {
     }
 
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
+    }
 }
