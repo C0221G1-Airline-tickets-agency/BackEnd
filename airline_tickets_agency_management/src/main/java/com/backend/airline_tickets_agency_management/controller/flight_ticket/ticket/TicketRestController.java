@@ -57,6 +57,7 @@ public class TicketRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         ticketDto.setTicketId(id);
+//        ticketDto.setTicketStatus(1);
         Ticket ticket= new Ticket();
         BeanUtils.copyProperties(ticketDto,ticket);
         ticketService.save(ticket);
