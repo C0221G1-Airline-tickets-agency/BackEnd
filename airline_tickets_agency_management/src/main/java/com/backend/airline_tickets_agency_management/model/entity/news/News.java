@@ -24,7 +24,7 @@ public class News {
     @Column(columnDefinition = "TEXT")
     private String newsContent;
     private LocalDate newsWriteDay;
-    private Long NewsViews;
+    private Long NewsView;
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;

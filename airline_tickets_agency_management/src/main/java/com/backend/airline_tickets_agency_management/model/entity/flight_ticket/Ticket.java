@@ -1,6 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
-import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
+import com.backend.airline_tickets_agency_management.model.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,8 +45,8 @@ public class Ticket {
     @JoinColumn(name = "ticket_status_id",referencedColumnName ="ticket_status_id" )
     private TicketStatus ticketStatus;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-    private boolean flag = true;
+    @JoinColumn(name = "user_id")
+    private User user;
+    private Boolean flag = true;
 
 }
