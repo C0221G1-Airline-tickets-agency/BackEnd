@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 @CrossOrigin("http://localhost:4200/")
 @RequestMapping("/admin")
 public class UserController {
-    private static String REGEX = "^\\w{5,}$";
+    private static String REGEX_PASSWORD = "^\\w{5,}$";
 
 
     @Autowired
@@ -47,8 +47,8 @@ public class UserController {
                     if (comparePassword1) {
                         return new ResponseEntity<>(new Message("Mật khẩu mới trùng với mật khẩu cũ"), HttpStatus.BAD_REQUEST);
                     } else {
-                    String newPassword =encoderPassword(passwordDto.getNewPassword());
-                        user.setPassword(newPassword);
+                    String newPasswordEncoder =encoderPassword(passwordDto.getNewPassword());
+                        user.setPassword(newPasswordEncoder);
                         this.iUserService.save(user);
                         return new ResponseEntity<>(new Message("Đổi mật khẩu thành công"), HttpStatus.OK);
                     }
@@ -67,7 +67,7 @@ public class UserController {
     }
 
     Boolean checkRegex(PasswordDto passwordDto) {
-        return Pattern.compile(REGEX).matcher(passwordDto.getOldPassword()).matches() && Pattern.compile(REGEX).matcher(passwordDto.getNewPassword()).matches() && Pattern.compile(REGEX).matcher(passwordDto.getConfirmNewPassword()).matches();
+        return Pattern.compile(REGEX_PASSWORD).matcher(passwordDto.getOldPassword()).matches() && Pattern.compile(REGEX_PASSWORD).matcher(passwordDto.getNewPassword()).matches() && Pattern.compile(REGEX_PASSWORD).matcher(passwordDto.getConfirmNewPassword()).matches();
     }
 
     String encoderPassword(String password) {
