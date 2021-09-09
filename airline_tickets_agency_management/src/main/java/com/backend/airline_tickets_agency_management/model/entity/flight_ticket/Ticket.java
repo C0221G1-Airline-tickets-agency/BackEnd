@@ -1,7 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
 import com.backend.airline_tickets_agency_management.model.entity.user.User;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

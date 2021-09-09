@@ -1,14 +1,12 @@
 package com.backend.airline_tickets_agency_management.model.entity.customer;
 
-import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor

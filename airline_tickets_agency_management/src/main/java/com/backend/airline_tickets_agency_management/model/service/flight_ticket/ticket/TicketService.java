@@ -26,7 +26,7 @@ public class TicketService implements ITicketService {
 
     @Override
     public List<Ticket> findAllNormal() {
-        return null;
+        return this.ticketRepository.findAll();
     }
 
     @Override
