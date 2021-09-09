@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("http://localhost:4200/")
@@ -18,7 +17,7 @@ public class EmployeeRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity findEmployee(@PathVariable Long id) {
-        Optional<Employee> employee = employeeService.findById(id);
+        Employee employee = employeeService.findById(id).orElse(null);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 }
