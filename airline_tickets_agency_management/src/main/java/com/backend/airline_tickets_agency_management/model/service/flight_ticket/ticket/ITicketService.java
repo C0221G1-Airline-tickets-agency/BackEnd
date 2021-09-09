@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface ITicketService extends IGeneralService<Ticket> {
     Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable);
+
 }

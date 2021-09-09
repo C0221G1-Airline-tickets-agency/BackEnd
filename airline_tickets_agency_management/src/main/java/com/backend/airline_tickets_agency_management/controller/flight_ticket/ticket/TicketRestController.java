@@ -51,14 +51,25 @@ public class TicketRestController {
     public ResponseEntity<Ticket> update(@PathVariable Long id, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }
         if (ticketDto == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         ticketDto.setTicketId(id);
+//        ticketDto.setTicketStatus(1);
         Ticket ticket= new Ticket();
         BeanUtils.copyProperties(ticketDto,ticket);
         ticketService.save(ticket);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Ticket> findTicketById(@PathVariable Long id) {
+        Optional<Ticket> ticket = ticketService.findById(id);
+        if (!ticket.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
+    }
+
 }
