@@ -1,9 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.service.destination;
 
 import com.backend.airline_tickets_agency_management.model.dto.destination.ScenicDto;
-import com.backend.airline_tickets_agency_management.model.entity.destinations_scenic.Destination;
 import com.backend.airline_tickets_agency_management.model.entity.destinations_scenic.Scenic;
-import com.backend.airline_tickets_agency_management.model.repository.destination.IDestinationRepository;
 import com.backend.airline_tickets_agency_management.model.repository.destination.IScenicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +43,7 @@ public class ScenicServiceImpl implements IScenicService {
         scenicRepository.save(scenic);
 
         result.put("status", true);
-        result.put("msg", "Tạo địa danh thành công!!!");
+        result.put("msg", "Tạo bài viết thành công!!!");
         return result;
     }
 
@@ -79,7 +77,7 @@ public class ScenicServiceImpl implements IScenicService {
         scenicRepository.save(scenic);
 
         result.put("status", true);
-        result.put("msg", "Cập nhật địa danh thành công!!!");
+        result.put("msg", "Cập nhật bài viết thành công!!!");
         return result;
     }
 

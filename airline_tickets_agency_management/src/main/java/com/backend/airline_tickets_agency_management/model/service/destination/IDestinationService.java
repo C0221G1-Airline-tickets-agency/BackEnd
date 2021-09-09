@@ -5,7 +5,6 @@ import com.backend.airline_tickets_agency_management.model.dto.destination.Sceni
 import com.backend.airline_tickets_agency_management.model.entity.destinations_scenic.Destination;
 import org.springframework.validation.BindingResult;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

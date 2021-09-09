@@ -1,6 +1,5 @@
 package com.backend.airline_tickets_agency_management.model.entity.destinations_scenic;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;

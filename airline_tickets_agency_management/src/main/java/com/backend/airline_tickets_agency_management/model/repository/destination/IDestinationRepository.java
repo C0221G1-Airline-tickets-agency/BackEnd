@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface IDestinationRepository extends JpaRepository<Destination,Long> {
-    Destination findDestinationByDestinationName(String destinationName);
+    Destination findByDestinationName(String destinationName);
 }

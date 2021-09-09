@@ -37,12 +37,17 @@ public class DestinationServiceImpl implements IDestinationService {
                 result.put("msg", "SAVE FAILED");
                 result.put("errors", errors);
                 return result;
-            }
+            };
             if (destinatonDto.getListScenic().size() == 0){
                 result.put("status", false);
                 result.put("msg", "SAVE FAILED");
-                errors.add("Chưa có địa danh");
-                result.put("errors", errors);
+                result.put("msgEmptyScenic", "Chưa có bài viết");
+                return result;
+            };
+            if (isCheckNameDestination(destinatonDto)){
+                result.put("status", false);
+                result.put("msg", "SAVE FAILED");
+                result.put("msgUnique", "Tên điểm đến đã tồn tại");
                 return result;
             }
         } catch (Exception e){
@@ -72,6 +77,11 @@ public class DestinationServiceImpl implements IDestinationService {
         return result;
     }
 
+    private boolean isCheckNameDestination(DestinatonDto destinatonDto) {
+        Destination destination = this.destinationRepository.findByDestinationName(destinatonDto.getDestinationName());
+        return destination != null;
+    }
+
     @Override
     public Map<String, Object> update(DestinatonDto destinatonDto, BindingResult bindingResult) {
         Destination destination = destinationRepository.findById(destinatonDto.getDestinationId()).orElse(null);
@@ -90,15 +100,19 @@ public class DestinationServiceImpl implements IDestinationService {
             if (destination == null){
                 result.put("status", false);
                 result.put("msg", "SAVE FAILED");
-                errors.add("Điểm đến không tồn tại");
-                result.put("errors", errors);
+                result.put("msgExist", "Điểm đến không tồn tại");
                 return result;
             }
             if (destinatonDto.getListScenic().size() == 0){
                 result.put("status", false);
                 result.put("msg", "SAVE FAILED");
-                errors.add("Chưa có địa danh");
-                result.put("errors", errors);
+                result.put("msgEmptyScenic", "Chưa có bài viết");
+                return result;
+            }
+            if (isCheckNameDestination(destinatonDto) && !destinatonDto.getDestinationName().equals(destination.getDestinationName())){
+                result.put("status", false);
+                result.put("msg", "SAVE FAILED");
+                result.put("msgUnique", "Tên điểm đến đã tồn tại");
                 return result;
             }
         } catch (Exception e){
