@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.sonarqube" version "3.0"
 }
 
 group = 'com.backEnd'
@@ -28,6 +29,14 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'http://18.216.59.122:9000/'
+        property 'sonar.login', 'f4570cffe1dd5bf39ecbeed0ef04eef921709b5a'
+        property 'sonar.projectKey', 'C0221G1_ReviewCode_ThoNH'
+        property 'sonar.projectName', 'C021G1_ReviewCode_ThoNH'
+    }
 }
 
 test {

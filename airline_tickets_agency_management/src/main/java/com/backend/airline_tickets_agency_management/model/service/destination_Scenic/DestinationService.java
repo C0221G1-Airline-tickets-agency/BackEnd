@@ -24,14 +24,18 @@ public class DestinationService implements IDestinationService {
     @Override
     public Optional<Destination> findByIdDestination(Long id) {
         return destinationRepository.findById(id);
+
     }
+
 
 
     @Override
     public void deleteDestination(Long id) {
         Optional<Destination> destination= destinationRepository.findById(id);
-        destination.get().setFlag(0);
-        destinationRepository.save(destination.get());
+    }
 
+    @Override
+    public void saveDestination(Destination destination) {
+        destinationRepository.save(destination);
     }
 }

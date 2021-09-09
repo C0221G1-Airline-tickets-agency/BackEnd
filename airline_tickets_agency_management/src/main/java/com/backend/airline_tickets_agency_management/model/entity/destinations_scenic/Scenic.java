@@ -1,4 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.destinations_scenic;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -6,21 +8,13 @@ import javax.persistence.*;
 public class Scenic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ScenicId;
-    private String ScenicName;
-    private String ScenicDescription;
-    private String ScenicImage;
+    private Long scenicId;
+    private String scenicName;
+    private String scenicDescription;
+    private String scenicImage;
     private Integer flag;
-
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
-
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "destination_id" )
     private Destination destination;
 
@@ -28,35 +22,43 @@ public class Scenic {
     }
 
     public Long getScenicId() {
-        return ScenicId;
+        return scenicId;
     }
 
     public void setScenicId(Long scenicId) {
-        ScenicId = scenicId;
+        this.scenicId = scenicId;
     }
 
     public String getScenicName() {
-        return ScenicName;
+        return scenicName;
     }
 
     public void setScenicName(String scenicName) {
-        ScenicName = scenicName;
+        this.scenicName = scenicName;
     }
 
     public String getScenicDescription() {
-        return ScenicDescription;
+        return scenicDescription;
     }
 
     public void setScenicDescription(String scenicDescription) {
-        ScenicDescription = scenicDescription;
+        this.scenicDescription = scenicDescription;
     }
 
     public String getScenicImage() {
-        return ScenicImage;
+        return scenicImage;
     }
 
     public void setScenicImage(String scenicImage) {
-        ScenicImage = scenicImage;
+        this.scenicImage = scenicImage;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public Destination getDestination() {
