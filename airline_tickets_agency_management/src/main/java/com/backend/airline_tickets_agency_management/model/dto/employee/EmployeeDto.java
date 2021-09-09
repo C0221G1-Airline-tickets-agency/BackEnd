@@ -1,46 +1,39 @@
-package com.backend.airline_tickets_agency_management.model.entity.employee;
+package com.backend.airline_tickets_agency_management.model.dto.employee;
 
 import com.backend.airline_tickets_agency_management.model.entity.news.News;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
-@Entity
-@AllArgsConstructor
-@Table(name = "employee")
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployeeDto {
     private Long employeeId;
+
+    @NotBlank
     private String employeeCode;
+
+    @NotBlank
+    @Size(min = 2)
     private String employeeName;
-    @Column(columnDefinition = "date")
+
+    @NotBlank
     private String employeeBirthday;
+
+    @NotBlank
     private String employeeGender;
+
+    @NotBlank
     private String employeePhoneNumber;
+
+    @NotBlank
     private String employeeAddress;
+
+    @NotBlank
     private String employeeImage;
     private boolean flag = true;
-    @OneToMany(mappedBy = "employee")
-    @JsonBackReference
     private List<News> news;
-
-    public Employee(){
-    }
-
-    public Employee(String employeeCode, String employeeName, String employeeBirthday, String employeeGender, String employeePhoneNumber, String employeeAddress, String employeeImage) {
-        this.employeeCode = employeeCode;
-        this.employeeName = employeeName;
-        this.employeeGender = employeeGender;
-        this.employeePhoneNumber = employeePhoneNumber;
-        this.employeeAddress = employeeAddress;
-        this.employeeImage = employeeImage;
-    }
 
     public Long getEmployeeId() {
         return employeeId;
@@ -106,19 +99,19 @@ public class Employee {
         this.employeeImage = employeeImage;
     }
 
-    public List<News> getNews() {
-        return news;
-    }
-
-    public void setNews(List<News> news) {
-        this.news = news;
-    }
-
     public boolean isFlag() {
         return flag;
     }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
     }
 }
