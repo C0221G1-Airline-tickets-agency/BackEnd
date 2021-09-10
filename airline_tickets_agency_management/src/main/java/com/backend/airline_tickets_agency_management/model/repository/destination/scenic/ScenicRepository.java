@@ -1,4 +1,4 @@
-package com.backend.airline_tickets_agency_management.model.repository.destiantion_scenic.scenic;
+package com.backend.airline_tickets_agency_management.model.repository.destination.scenic;
 
 import com.backend.airline_tickets_agency_management.model.entity.destinations_scenic.Scenic;
 import org.springframework.data.jpa.repository.JpaRepository;

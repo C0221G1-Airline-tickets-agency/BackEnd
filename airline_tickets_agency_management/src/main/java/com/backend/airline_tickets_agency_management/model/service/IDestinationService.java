@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface IDestinationService {
     Page<Destination>findAllDestination(Pageable pageable);
     Optional<Destination> findByIdDestination(Long id);
-    void deleteDestination(Long id);
     void saveDestination(Destination destination);
 
 }

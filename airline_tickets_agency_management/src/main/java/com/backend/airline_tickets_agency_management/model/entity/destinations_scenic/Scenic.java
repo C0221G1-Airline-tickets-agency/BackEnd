@@ -17,10 +17,6 @@ public class Scenic {
     @JsonIgnore
     @JoinColumn(name = "destination_id" )
     private Destination destination;
-
-    public Scenic() {
-    }
-
     public Long getScenicId() {
         return scenicId;
     }

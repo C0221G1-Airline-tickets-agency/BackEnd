@@ -14,9 +14,6 @@ public class Destination {
     private Integer flag;
     @OneToMany(mappedBy = "destination")
     private List<Scenic> scenics;
-    public Destination() {
-    }
-
     public Long getDestinationId() {
         return destinationId;
     }

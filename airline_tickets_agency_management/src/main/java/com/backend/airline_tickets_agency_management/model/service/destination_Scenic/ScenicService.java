@@ -2,7 +2,7 @@ package com.backend.airline_tickets_agency_management.model.service.destination_
 
 
 import com.backend.airline_tickets_agency_management.model.entity.destinations_scenic.Scenic;
-import com.backend.airline_tickets_agency_management.model.repository.destiantion_scenic.scenic.ScenicRepository;
+import com.backend.airline_tickets_agency_management.model.repository.destination.scenic.ScenicRepository;
 import com.backend.airline_tickets_agency_management.model.service.IScenicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
