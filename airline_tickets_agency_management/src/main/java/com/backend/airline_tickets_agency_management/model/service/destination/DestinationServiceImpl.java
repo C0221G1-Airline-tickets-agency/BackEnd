@@ -7,6 +7,8 @@ import com.backend.airline_tickets_agency_management.model.entity.destinations_s
 import com.backend.airline_tickets_agency_management.model.repository.destination.IDestinationRepository;
 import com.backend.airline_tickets_agency_management.model.repository.destination.IScenicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -129,5 +131,21 @@ public class DestinationServiceImpl implements IDestinationService {
         result.put("status", true);
         result.put("msg", "Cập nhật điểm đến thành công!!!");
         return result;
+    }
+
+    @Override
+    public Page<Destination> findAllDestination(Pageable pageable) {
+        return destinationRepository.findAllDestination(pageable);
+    }
+
+    @Override
+    public Optional<Destination> findByIdDestination(Long id) {
+        return destinationRepository.findById(id);
+
+    }
+
+    @Override
+    public void saveDestination(Destination destination) {
+        destinationRepository.save(destination);
     }
 }

@@ -7,6 +7,10 @@ import com.backend.airline_tickets_agency_management.model.entity.destinations_s
 import com.backend.airline_tickets_agency_management.model.service.destination.IDestinationService;
 import com.backend.airline_tickets_agency_management.model.service.destination.IScenicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -85,5 +89,42 @@ public class DestinationRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(scenicOptional.get(), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/list-destination")
+    public ResponseEntity<Page<Destination>> findAllDestination(@RequestParam Optional<Integer> page, @RequestParam Optional<String> sortBy){
+        Pageable pageable= PageRequest.of(page.orElse(0),6, Sort.Direction.ASC,sortBy.orElse("destination_id"));
+        Page<Destination> destinationPage = destinationService.findAllDestination(pageable);
+        if (destinationPage.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(destinationPage, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/delete-destination")
+    public ResponseEntity<Destination> deleteDestination(@RequestParam Long id){
+        Destination destination=destinationService.findByIdDestination(id).orElse(null);
+        if (destination==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        if (destination.getFlag()==0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        destination.setFlag(0);
+        destinationService.saveDestination(destination);
+        return new ResponseEntity<>(destination,HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/find-destination")
+    public ResponseEntity<Destination>findByIdDes(@RequestParam Long id){
+        Destination destination=destinationService.findByIdDestination(id).orElse(null);
+        if (destination == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(destination,HttpStatus.OK);
     }
 }

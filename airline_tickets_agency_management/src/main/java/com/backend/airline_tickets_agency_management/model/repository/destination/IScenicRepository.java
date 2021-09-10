@@ -14,4 +14,7 @@ import java.util.List;
 public interface IScenicRepository extends JpaRepository<Scenic,Long> {
     @Query(value="select * from scenic where destination_id = :para and flag = 1",nativeQuery=true)
     Iterable<Scenic> findScenicByDestination(@Param("para") Long idDestination);
+
+    @Query(value="SELECT * FROM airline_tickets_agency_management.scenic where flag=1 and destination_id =?1" ,nativeQuery=true)
+    List<Scenic> findScenicByDestinationId(Long id);
 }

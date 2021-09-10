@@ -95,4 +95,5 @@ public class ScenicServiceImpl implements IScenicService {
     public Optional<Scenic> findById(Long id) {
         return scenicRepository.findById(id);
     }
+
 }
