@@ -43,6 +43,7 @@ public class NewsService implements INewsService{
 
     @Override
     public void remove(Long id) {
+        // Do nothing
     }
 
     @Override

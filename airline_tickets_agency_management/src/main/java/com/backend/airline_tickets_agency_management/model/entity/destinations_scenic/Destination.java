@@ -17,7 +17,9 @@ public class Destination {
     @OneToMany(mappedBy = "destination")
     @JsonBackReference
     private List<Scenic> scenics;
+
     public Destination() {
+        // Do nothing
     }
 
     public Long getDestinationId() {

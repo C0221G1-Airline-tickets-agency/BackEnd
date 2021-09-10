@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200/")
 public class FlightRestController {
     @Autowired
     private IFlightService flightService;

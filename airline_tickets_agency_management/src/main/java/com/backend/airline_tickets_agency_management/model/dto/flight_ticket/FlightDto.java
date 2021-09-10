@@ -36,20 +36,7 @@ public class FlightDto {
     private Location locationFrom;
 
     public FlightDto() {
-    }
-
-    public FlightDto(Long flightId, @NotBlank(message = "Not null") String flightCode, @NotBlank(message = "Not null") @Pattern(regexp = "^(19|20)?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])$") String flightDate, @NotBlank(message = "Not null") @Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") String departureTime, @NotBlank(message = "Not null") @Pattern(regexp = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$") String endTime, @NotBlank(message = "Not null") Double flightPrice, Boolean flag, @NotNull(message = "Not null") Airline airline, List<Ticket> tickets, @NotNull(message = "Not null") Location locationTo, @NotNull(message = "Not null") Location locationFrom) {
-        this.flightId = flightId;
-        this.flightCode = flightCode;
-        this.flightDate = flightDate;
-        this.departureTime = departureTime;
-        this.endTime = endTime;
-        this.flightPrice = flightPrice;
-        this.flag = flag;
-        this.airline = airline;
-        this.tickets = tickets;
-        this.locationTo = locationTo;
-        this.locationFrom = locationFrom;
+        // default implementation ignored
     }
 
     public Long getFlightId() {

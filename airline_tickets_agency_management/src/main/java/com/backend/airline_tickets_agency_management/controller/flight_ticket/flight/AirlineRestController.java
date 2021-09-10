@@ -1,8 +1,10 @@
 package com.backend.airline_tickets_agency_management.controller.flight_ticket.flight;
 
 
+import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.AirlineDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Airline;
 import com.backend.airline_tickets_agency_management.model.service.flight_ticket.flight.IAirlineService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,9 +41,11 @@ public class AirlineRestController {
         }
     }
     @PostMapping(value= "/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Airline> createAirline(@RequestBody Airline airline){
-        this.airlineService.saveAirline(airline);
-        return new ResponseEntity<>(airline,HttpStatus.OK);
+    public ResponseEntity<Airline> createAirline(@RequestBody AirlineDto airline){
+        Airline airline1 = new Airline();
+        BeanUtils.copyProperties(airline,airline1);
+        this.airlineService.saveAirline(airline1);
+        return new ResponseEntity<>(airline1,HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
