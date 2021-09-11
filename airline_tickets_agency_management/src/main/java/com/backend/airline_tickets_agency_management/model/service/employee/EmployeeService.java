@@ -53,7 +53,6 @@ public class EmployeeService implements IEmployeeService{
         Pageable pageable = PageRequest.of(page, 5);
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), employeeList.size());
-        Page<IEmployeeDto> pages = new PageImpl<>(employeeList.subList(start, end), pageable, employeeList.size());
-        return pages;
+        return new PageImpl<>(employeeList.subList(start, end), pageable, employeeList.size());
     }
 }

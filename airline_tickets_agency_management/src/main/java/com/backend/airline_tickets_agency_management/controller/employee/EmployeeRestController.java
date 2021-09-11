@@ -8,10 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/employee")
+@RequestMapping(value = "/api/employee")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class EmployeeRestController {
     @Autowired
@@ -31,16 +32,16 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<Boolean> deleteEmployee(@PathVariable Long id) {
         Employee employee = service.findById(id).orElse(null);
         if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
-        if (employee.isFlag()==false){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (!employee.isFlag()) {
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
         employee.setFlag(false);
         service.save(employee);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
