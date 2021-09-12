@@ -12,4 +12,7 @@ String getAirlineName();
 String getTicketType();
 String getPassengerType();
 String getPrice();
+String getLogo();
+String getTicketId();
+
 }
