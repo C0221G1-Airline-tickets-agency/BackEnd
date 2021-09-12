@@ -13,6 +13,11 @@ public interface IFlightService {
     Page<Flight> findByPrice(String code,Pageable pageable);
     Flight findById(Long id);
 
+    Page<Flight> findByDepartureTime(String time,Pageable pageable);
+
+    Page<Flight> findByAirline(String name, Pageable pageable);
+
     Flight findFlightById(Long id);
     Flight saveFlight(Flight flight);
+    Page<Flight> findByDate(String date, Pageable pageable);
 }
