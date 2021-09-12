@@ -19,6 +19,7 @@ public class TicketStatus {
     @Column(name = "ticket_status_id")
     private Long ticketStatusId;
     private String ticketStatusName;
+
     @OneToMany(mappedBy = "ticketStatus")
     @JsonIgnore
     private List<Ticket> tickets;

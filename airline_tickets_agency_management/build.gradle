@@ -10,6 +10,7 @@ sonarqube {
         property 'sonar.login', 'f4570cffe1dd5bf39ecbeed0ef04eef921709b5a'
         property 'sonar.projectKey', 'C0221G1_ReviewCode_HieuNV'
         property 'sonar.projectName', 'C0221G1_ReviewCode_HieuNV'
+
     }
 }
 
