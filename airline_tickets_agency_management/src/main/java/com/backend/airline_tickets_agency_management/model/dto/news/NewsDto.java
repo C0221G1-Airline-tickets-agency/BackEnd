@@ -24,13 +24,13 @@ public class NewsDto {
     @NotBlank(message = " Not Null")
     private String newsImage;
     @NotBlank(message = " Not Null")
-    @Size(max = 1200, min = 666)
+    @Size(max = 120000, min = 666)
     private String newsContent;
     @NotNull(message="Status date is a required field")
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}", message="Invalid status date")
     private String newsWriteDay;
     @Min(value = 0)
-    private Integer NewsViews;
+    private long newsViews;
     private boolean flag = true;
     private Employee employee;
     private Category category;

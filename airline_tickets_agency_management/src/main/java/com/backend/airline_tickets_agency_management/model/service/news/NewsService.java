@@ -43,7 +43,7 @@ public class NewsService implements INewsService{
 
     @Override
     public void remove(Long id) {
-//        newsRepository.removeById(id);
+        newsRepository.deleteById(id);
     }
 
     @Override
