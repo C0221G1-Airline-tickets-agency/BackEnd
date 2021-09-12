@@ -51,10 +51,12 @@ public class TicketRestController {
     public ResponseEntity<Ticket> update(@PathVariable Long id, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
         if (ticketDto == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        if (ticketDto.getPassengerIdCard().equals("000000001")){
+            ticketDto.setPassengerIdCard("");
         }
         ticketDto.setTicketId(id);
 //        ticketDto.setTicketStatus(1);
