@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Setter
 @Getter
@@ -36,4 +34,5 @@ public class News {
     private Category category;
     @Column(columnDefinition = "boolean default true")
     private boolean flag = true;
+
 }
