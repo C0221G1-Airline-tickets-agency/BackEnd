@@ -1,7 +1,6 @@
 package com.backend.airline_tickets_agency_management.controller.security;
 
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
-import com.backend.airline_tickets_agency_management.model.repository.customer.ICustomerRepository;
 import com.backend.airline_tickets_agency_management.model.service.customer.ICustomerService;
 import com.backend.airline_tickets_agency_management.model.service.user.userDetail.UserDetailsImpl;
 import com.backend.airline_tickets_agency_management.model.entity.user.ERole;
