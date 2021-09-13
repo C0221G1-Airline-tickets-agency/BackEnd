@@ -127,7 +127,7 @@ public class NewsRestController {
         if (news == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if (news.isFlag() == false) {
+        if (!news.isFlag()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         news.setFlag(false);
