@@ -26,4 +26,9 @@ public class ReportService implements IReportService {
     public List<IReportDto> getTop5Employee(String startDate, String endDate) {
         return reportRepository.getTop5Employee(startDate, endDate);
     }
+
+    @Override
+    public List<IReportDto> getTop5Airline(String startDate, String endDate) {
+        return reportRepository.getTop5Airline(startDate,endDate);
+    }
 }

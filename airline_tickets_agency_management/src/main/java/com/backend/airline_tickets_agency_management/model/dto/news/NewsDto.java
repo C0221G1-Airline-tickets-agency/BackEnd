@@ -24,7 +24,7 @@ public class NewsDto {
     private String newsContent;
     @NotBlank(message = " Not Null")
     private String newsWriteDay;
-    private Integer NewsViews;
+    private Integer newsViews;
     private boolean flag = true;
     private Employee employee;
     private Category category;

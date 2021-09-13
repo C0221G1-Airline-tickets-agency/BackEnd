@@ -44,4 +44,13 @@ public class ReportController {
         }
         return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
     }
+    @GetMapping("/get-top-5-airline")
+    public ResponseEntity<List<IReportDto>> getTop5Airline(@RequestParam(defaultValue = "") String startDate,
+                                                            @RequestParam(defaultValue = "") String endDate) {
+        List<IReportDto> reportDtoList = reportService.getTop5Airline(startDate, endDate);
+        if (reportDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
+    }
 }
