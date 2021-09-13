@@ -35,7 +35,7 @@ dependencies {
 }
 sonarqube {
     properties {
-        property 'sonar.host.url', 'http://18.222.153.92:9000/'
+        property 'sonar.host.url', 'http://18.216.59.122:9000'
         property 'sonar.login', 'f4570cffe1dd5bf39ecbeed0ef04eef921709b5a'
         property 'sonar.projectKey', 'Cxx2xG1_ReviewCode_ThangDV'
         property 'sonar.projectName', 'Cxx2xG1_ReviewCode_ThangDV'
