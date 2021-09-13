@@ -8,10 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ticket_status")
 public class TicketStatus {
     @Id
@@ -19,6 +19,8 @@ public class TicketStatus {
     @Column(name = "ticket_status_id")
     private Long ticketStatusId;
     private String ticketStatusName;
+
+
     @OneToMany(mappedBy = "ticketStatus")
     @JsonBackReference
     private List<Ticket> tickets;

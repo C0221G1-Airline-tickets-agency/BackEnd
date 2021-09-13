@@ -10,10 +10,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "flight")
 public class Flight {
     @Id
@@ -25,17 +25,21 @@ public class Flight {
     private String flightDate;
     private String departureTime;
     private String endTime;
-    private Double flightPrice;
     private Boolean flag = true;
+
+
     @ManyToOne
     @JoinColumn(name = "airline_id",referencedColumnName = "airline_id")
     private Airline airline;
+
     @OneToMany(mappedBy = "flight")
-    @JsonBackReference(value = "flight")
+    @JsonBackReference
     private List<Ticket> tickets;
+
     @ManyToOne
     @JoinColumn(name = "point_of_departure",referencedColumnName = "location_id")
     private Location locationTo;
+
     @ManyToOne
     @JoinColumn(name = "destination",referencedColumnName = "location_id")
     private Location locationFrom;

@@ -1,5 +1,4 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,10 +9,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "airline")
 public class Airline {
     @Id
@@ -22,6 +21,8 @@ public class Airline {
     private Long airlineId;
     private String airlineName;
     private String logo;
+
+
     @OneToMany(mappedBy = "airline")
     @JsonBackReference
     private List<Flight> flights;

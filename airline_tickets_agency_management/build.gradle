@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.sonarqube" version "3.0"
 }
 
 group = 'com.backEnd'
@@ -17,7 +18,14 @@ configurations {
 repositories {
     mavenCentral()
 }
-
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'http://18.216.59.122:9000/'
+        property 'sonar.login', 'f4570cffe1dd5bf39ecbeed0ef04eef921709b5a'
+        property 'sonar.projectKey', 'C0221G1_ReviewCode_HoangNV'
+        property 'sonar.projectName', 'C0221G1_ReviewCode_HoangNV'
+    }
+}
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'

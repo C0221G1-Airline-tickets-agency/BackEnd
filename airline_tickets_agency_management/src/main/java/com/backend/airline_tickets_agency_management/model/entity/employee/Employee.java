@@ -1,7 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.employee;
-
 import com.backend.airline_tickets_agency_management.model.entity.news.News;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,15 +21,13 @@ public class Employee {
     private Long employeeId;
     private String employeeCode;
     private String employeeName;
-    @Column(columnDefinition = "date")
     private String employeeBirthday;
     private String employeeGender;
     private String employeePhoneNumber;
+    private boolean flag = true;
     private String employeeAddress;
     private String employeeImage;
-    private boolean flag = true;
     @OneToMany(mappedBy = "employee")
-    @JsonBackReference
+    @JsonIgnore
     private List<News> news;
-
 }

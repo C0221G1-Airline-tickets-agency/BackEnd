@@ -9,10 +9,10 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ticket")
 public class Ticket {
     @Id
@@ -26,27 +26,33 @@ public class Ticket {
     private Double ticketTypePrice;
     private Double ticketPrice;
     private Double tax;
+
     private String chairName;
     @Column(columnDefinition = "date")
+
     private String bookingDate;
     private Integer checkInBaggage;
     private Integer carryOnBaggage;
     private String passengerType;
-    private Double passengerTypePrice;
+    private String passengerTypePrice;
     private String passengerName;
     private String passengerGender;
     private String passengerPhone;
     private String passengerIdCard;
     private String passengerEmail;
+    private Boolean flag = true;
+
     @ManyToOne
     @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
     private Flight flight;
+
+
     @ManyToOne
     @JoinColumn(name = "ticket_status_id",referencedColumnName ="ticket_status_id" )
     private TicketStatus ticketStatus;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    private boolean flag = true;
 
 }
