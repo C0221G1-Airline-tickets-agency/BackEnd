@@ -1,4 +1,4 @@
-package com.backend.airline_tickets_agency_management.controller.user;
+package com.backend.airline_tickets_agency_management.controller.customer;
 
 import com.backend.airline_tickets_agency_management.model.dto.password.Message;
 import com.backend.airline_tickets_agency_management.model.dto.password.PasswordDto;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 @RestController
 @CrossOrigin("http://localhost:4200")
 @RequestMapping("api/customer")
-public class UserController {
+public class CustomerController {
     private static String REGEX_PASSWORD = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,20}$";
 
 
