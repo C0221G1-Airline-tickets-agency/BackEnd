@@ -1,6 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 
-import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
+import com.backend.airline_tickets_agency_management.model.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,10 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "ticket")
 public class Ticket {
     @Id
@@ -26,33 +27,32 @@ public class Ticket {
     private Double ticketTypePrice;
     private Double ticketPrice;
     private Double tax;
-
     private String chairName;
     @Column(columnDefinition = "date")
-
     private String bookingDate;
     private Integer checkInBaggage;
     private Integer carryOnBaggage;
     private String passengerType;
-    private String passengerTypePrice;
+    private Double passengerTypePrice;
     private String passengerName;
     private String passengerGender;
     private String passengerPhone;
     private String passengerIdCard;
     private String passengerEmail;
-    private Boolean flag = true;
-
     @ManyToOne
     @JoinColumn(name = "flight_id",referencedColumnName = "flight_id")
+    @JsonManagedReference
     private Flight flight;
-
 
     @ManyToOne
     @JoinColumn(name = "ticket_status_id",referencedColumnName ="ticket_status_id" )
+    @JsonManagedReference
     private TicketStatus ticketStatus;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private boolean flag = true;
 
 }
