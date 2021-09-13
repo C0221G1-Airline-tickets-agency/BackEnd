@@ -40,7 +40,7 @@ private ICategoryRepository categoryRepository;
 
     @Override
     public void remove(Long id) {
-//        newsRepository.removeById(id);
+    newsRepository.findById(id);
     }
 
     @Override

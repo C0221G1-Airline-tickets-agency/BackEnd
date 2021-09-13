@@ -1,9 +1,7 @@
 package com.backend.airline_tickets_agency_management.model.dto.flight_ticket;
-
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Airline;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Location;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
-
 import java.util.List;
 
 public class FlightDTO {
