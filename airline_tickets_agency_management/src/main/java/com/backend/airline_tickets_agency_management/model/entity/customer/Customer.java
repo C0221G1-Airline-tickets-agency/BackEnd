@@ -1,6 +1,5 @@
 package com.backend.airline_tickets_agency_management.model.entity.customer;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

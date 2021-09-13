@@ -56,11 +56,9 @@ public class FlightServiceImpl implements IFlightService {
     public Flight saveFlight(Flight flight) {
         return iFlightRepository.save(flight);
     }
-
     @Override
     public Page<Flight> findByDate(String date, Pageable pageable) {
         return iFlightRepository.findByDate(date,pageable);
     }
-
 
 }

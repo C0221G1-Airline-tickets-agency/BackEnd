@@ -58,8 +58,6 @@ public class FlightDto implements Validator {
         this.locationFrom = locationFrom;
     }
 
-
-
     public Long getFlightId() {
         return flightId;
     }

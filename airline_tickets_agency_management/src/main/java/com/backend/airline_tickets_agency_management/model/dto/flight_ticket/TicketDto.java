@@ -1,7 +1,9 @@
 package com.backend.airline_tickets_agency_management.model.dto.flight_ticket;
 
+import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Flight;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.TicketStatus;
+
 import com.backend.airline_tickets_agency_management.model.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +30,7 @@ public class TicketDto {
     private String passengerType;
     private Double passengerTypePrice;
     @NotBlank
+
     @Pattern(regexp = "^[A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]+([ ][A-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]+)+$")
     private String passengerName;
     private String passengerGender;
@@ -38,5 +41,6 @@ public class TicketDto {
     private String passengerEmail;
     private Flight flight;
     private TicketStatus ticketStatus;
+
     private User user;
 }

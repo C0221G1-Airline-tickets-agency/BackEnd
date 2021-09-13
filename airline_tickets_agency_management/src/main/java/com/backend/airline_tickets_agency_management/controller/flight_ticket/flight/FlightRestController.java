@@ -129,6 +129,7 @@ public class FlightRestController {
         }
     }
 
+
     @PutMapping(value ="/flight/update/{id}")
     public ResponseEntity<List<ObjectError>> updateFlight(@PathVariable Long id ,@Valid @RequestBody FlightDto flightDTO,BindingResult bindingResult){
         Flight flight = this.flightService.findFlightById(id);

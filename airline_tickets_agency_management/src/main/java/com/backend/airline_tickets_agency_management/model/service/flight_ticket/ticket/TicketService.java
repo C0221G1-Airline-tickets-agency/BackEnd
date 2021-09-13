@@ -1,5 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.service.flight_ticket.ticket;
 
+import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.TicketCustomerDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import com.backend.airline_tickets_agency_management.model.repository.flight_ticket.ticket.ITicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,26 @@ public class TicketService implements ITicketService {
     @Override
     public Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable) {
         return this.ticketRepository.findAllByFilter(passengerName, ticketCode, cityName, flightDate, pageable);
+    }
+
+    @Override
+    public void updateTicketCancel(Long id) {
+        ticketRepository.updateTicketCancel(id);
+    }
+
+    @Override
+    public void updateTicketPaid(Long id) {
+        ticketRepository.updateTicketPaid(id);
+    }
+
+    @Override
+    public List<TicketCustomerDto> findAllTicketCustomerBook(Long id, Integer index) {
+        return ticketRepository.findAllTicketCustomerBook(id, index);
+    }
+
+    @Override
+    public List<TicketCustomerDto> findAllTicketCustomerTransaction(Long id, Integer index) {
+        return ticketRepository.findAllTicketCustomerTransaction(id,index);
     }
 
 }

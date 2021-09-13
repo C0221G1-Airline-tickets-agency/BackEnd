@@ -1,17 +1,20 @@
 package com.backend.airline_tickets_agency_management.controller.flight_ticket.flight;
 
 
+
 import com.backend.airline_tickets_agency_management.model.dto.flight_ticket.AirlineDto;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Airline;
 import com.backend.airline_tickets_agency_management.model.service.flight_ticket.flight.IAirlineService;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;

@@ -42,5 +42,4 @@ public interface IFlightRepository extends JpaRepository<Flight,Long> {
             "order by flight_date,departure_time",nativeQuery = true)
     Page<Flight> findByDate(String date, Pageable pageable);
 
-
 }
