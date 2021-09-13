@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +34,8 @@ public class EmployeeRestController {
     IEmployeeService service;
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    PasswordEncoder encoder;
     @Autowired
     RoleRepository roleRepository;
     final String ERORR_MSG = "Error: Role is not found.";
@@ -86,11 +89,13 @@ public class EmployeeRestController {
         if (userRepository.existsByUserName(addRequest.getUsername())) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        User userDto = new User(addRequest.getUsername(), addRequest.getPassword());
+        User userDto = new User(addRequest.getUsername(), encoder.encode(addRequest.getPassword()));
         userDto.setUserCode(this.codeIncrement());
         userDto.setEnabled(true);
 
-
+//        if (bindingResult.hasErrors()){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
         Employee employee = new Employee(addRequest.getEmployeeCode(), addRequest.getEmployeeName(), addRequest.getEmployeeBirthday(), addRequest.getEmployeeGender(), addRequest.getEmployeePhoneNumber(), addRequest.getEmployeeAddress(), addRequest.getEmployeeImage());
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -104,10 +109,10 @@ public class EmployeeRestController {
         if (strRoles == null) {
             Role userRole = (Role) roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException(ERORR_MSG));
             roles.add(userRole);
-        } else if (strRoles.equals(ERole.ROLE_MODERATOR)) {
+        } else if (strRoles.equals("ROLE_MODERATOR")) {
             Role userRole = (Role) roleRepository.findByName(ERole.ROLE_MODERATOR).orElseThrow(() -> new RuntimeException(ERORR_MSG));
             roles.add(userRole);
-        } else if (strRoles.equals(ERole.ROLE_ADMIN)) {
+        } else if (strRoles.equals("ROLE_ADMIN")) {
             Role userRole = (Role) roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException(ERORR_MSG));
             roles.add(userRole);
         }
