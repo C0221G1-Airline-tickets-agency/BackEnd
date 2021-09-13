@@ -28,12 +28,13 @@ public class Employee {
     @JsonBackReference
     private List<News> news;
 
-    public Employee(){
+    public Employee() {
     }
 
     public Employee(String employeeCode, String employeeName, String employeeBirthday, String employeeGender, String employeePhoneNumber, String employeeAddress, String employeeImage) {
         this.employeeCode = employeeCode;
         this.employeeName = employeeName;
+        this.employeeBirthday = employeeBirthday;
         this.employeeGender = employeeGender;
         this.employeePhoneNumber = employeePhoneNumber;
         this.employeeAddress = employeeAddress;

@@ -70,7 +70,7 @@ public class EmployeeRestController {
     @GetMapping(value = "/find/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         Employee employee = service.findById(id).orElse(null);
-        return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update-employee/{id}")
