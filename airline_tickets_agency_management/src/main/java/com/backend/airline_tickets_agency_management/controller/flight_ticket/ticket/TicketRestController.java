@@ -105,7 +105,7 @@ public class TicketRestController {
     public void sendEmail(@RequestBody Optional<TicketSendMailDto> listTicket) throws MessagingException {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String array = "minhnguyenduc27121998@gmail.com";
+        String array = "ducdoan5695@gmail.com";
         Integer stt = 1;
         Double total = Double.valueOf(0);
         DecimalFormat format = new DecimalFormat("###,###,###");

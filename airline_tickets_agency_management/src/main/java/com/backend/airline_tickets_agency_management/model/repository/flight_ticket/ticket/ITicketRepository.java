@@ -40,8 +40,8 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
     @Query(value = "update ticket set ticket_status_id = 2 where ticket_id = ?", nativeQuery = true)
     void updateTicketPaid(Long id);
 
-    @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.airport_name as pointOfDeparture, \n" +
-            "lFrom.airport_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
+    @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.city_name as pointOfDeparture, \n" +
+            "lFrom.city_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
             "(t.ticket_price+(t.ticket_price*ticket_type_price)+t.plus_baggage+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
             "ts.ticket_status_name as ticketStatusName\n" +
             "FROM ticket t\n" +
@@ -54,8 +54,8 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "LIMIT ?2,5", nativeQuery = true)
     List<TicketCustomerDto> findAllTicketCustomerBook(Long id, Integer index);
 
-    @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.airport_name as pointOfDeparture, \n" +
-            "            lFrom.airport_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
+    @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.city_name as pointOfDeparture, \n" +
+            "            lFrom.city_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
             "            (t.ticket_price+(t.ticket_price*ticket_type_price)+t.plus_baggage+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
             "            ts.ticket_status_name as ticketStatusName\n" +
             "            FROM ticket t\n" +
