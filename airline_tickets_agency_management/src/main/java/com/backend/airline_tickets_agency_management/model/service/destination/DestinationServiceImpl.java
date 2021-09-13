@@ -58,16 +58,16 @@ public class DestinationServiceImpl implements IDestinationService {
         }
 
         Destination destination = new Destination();
-        destination.setDestinationName(destinatonDto.getDestinationName());
-        destination.setDestinationDescription(destinatonDto.getDestinationDescription());
+        destination.setDestinationName(destinatonDto.getDestinationName().trim());
+        destination.setDestinationDescription(destinatonDto.getDestinationDescription().trim());
         destination.setDestinationImage(destinatonDto.getDestinationImage());
         destination.setFlag(1);
         destinationRepository.save(destination);
 
         for (ScenicDto scenicDto:destinatonDto.getListScenic()) {
             Scenic scenic = new Scenic();
-            scenic.setScenicName(scenicDto.getScenicName());
-            scenic.setScenicDescription(scenicDto.getScenicDescription());
+            scenic.setScenicName(scenicDto.getScenicName().trim());
+            scenic.setScenicDescription(scenicDto.getScenicDescription().trim());
             scenic.setScenicImage(scenicDto.getScenicImage());
             scenic.setDestination(destination);
             scenic.setFlag(1);
@@ -122,8 +122,8 @@ public class DestinationServiceImpl implements IDestinationService {
             result.put("msg", "UPDATE FAILED");
         }
         destination.setDestinationId(destinatonDto.getDestinationId());
-        destination.setDestinationName(destinatonDto.getDestinationName());
-        destination.setDestinationDescription(destinatonDto.getDestinationDescription());
+        destination.setDestinationName(destinatonDto.getDestinationName().trim());
+        destination.setDestinationDescription(destinatonDto.getDestinationDescription().trim());
         destination.setDestinationImage(destinatonDto.getDestinationImage());
         destination.setFlag(1);
         destinationRepository.save(destination);

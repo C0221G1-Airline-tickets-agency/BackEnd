@@ -35,8 +35,8 @@ public class ScenicServiceImpl implements IScenicService {
         }
 
         Scenic scenic = new Scenic();
-        scenic.setScenicName(scenicDto.getScenicName());
-        scenic.setScenicDescription(scenicDto.getScenicDescription());
+        scenic.setScenicName(scenicDto.getScenicName().trim());
+        scenic.setScenicDescription(scenicDto.getScenicDescription().trim());
         scenic.setScenicImage(scenicDto.getScenicImage());
         scenic.setDestination(scenicDto.getDestination());
         scenic.setFlag(1);
@@ -69,8 +69,8 @@ public class ScenicServiceImpl implements IScenicService {
         }
 
         scenic.setScenicId(scenicDto.getScenicId());
-        scenic.setScenicName(scenicDto.getScenicName());
-        scenic.setScenicDescription(scenicDto.getScenicDescription());
+        scenic.setScenicName(scenicDto.getScenicName().trim());
+        scenic.setScenicDescription(scenicDto.getScenicDescription().trim());
         scenic.setScenicImage(scenicDto.getScenicImage());
         scenic.setDestination(scenicDto.getDestination());
         scenic.setFlag(1);
