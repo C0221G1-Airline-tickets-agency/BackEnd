@@ -12,9 +12,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -52,33 +56,15 @@ public class CustomerController {
 
     //Toàn code
     @PostMapping("/create")
-    public ResponseEntity<Customer> createCustomer(@Valid @RequestBody CustomerDto customerDto,
-                                                   BindingResult bindingResult) {
-        Customer customer = new Customer();
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            customerDto.setFlag(true);
-            BeanUtils.copyProperties(customerDto, customer);
-            return new ResponseEntity<>(this.iCustomerService.saveCustomer(customer), HttpStatus.OK);
-        }
+    public Map<String,Object> createCustomer(@Valid @RequestBody CustomerDto customerDto,
+                                             BindingResult bindingResult) {
+      return this.iCustomerService.createCustomer(customerDto,bindingResult);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,
+    public Map<String, Object> updateCustomer(@PathVariable Long id, @Valid @RequestBody CustomerDto customerDto,
                                                    BindingResult bindingResult) {
-        Customer customer = this.iCustomerService.findCustomerById(id);
-        if (customer == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Customer customer1 = new Customer();
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            customerDto.setCustomerId(customer.getCustomerId());
-            BeanUtils.copyProperties(customerDto, customer1);
-            return new ResponseEntity<>(this.iCustomerService.updateCustomer(customer1), HttpStatus.OK);
-        }
+        return this.iCustomerService.updateCustomer(id,customerDto,bindingResult);
     }
 
     @GetMapping("/{id}")
@@ -90,5 +76,17 @@ public class CustomerController {
             return new ResponseEntity<>(customer,HttpStatus.OK);
         }
     }
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public Map<String, String> handleValidationExceptions(
+//            MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getAllErrors().forEach(error -> {
+//            String fieldName = ((FieldError) error).getField();
+//            String errorMessage = error.getDefaultMessage();
+//            errors.put(fieldName, errorMessage);
+//        });
+//        return errors;
+//    }
 
 }

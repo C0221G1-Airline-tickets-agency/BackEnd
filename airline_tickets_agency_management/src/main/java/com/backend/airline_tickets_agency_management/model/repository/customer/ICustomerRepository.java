@@ -34,6 +34,15 @@ public interface ICustomerRepository extends PagingAndSortingRepository<Customer
     @Query(value = "select * from customer where customer_id = ?1",nativeQuery = true)
     Customer findCustomerById(Long id);
 
+    @Query(value = "select * from customer where customer_email = ?1",nativeQuery = true)
+    Customer findByEmail(String email);
+
+    @Query(value = "select * from customer where customer_phone = ?1",nativeQuery = true)
+    Customer findByPhone(String phone);
+
+    @Query(value = "select * from customer where customer_passport = ?1",nativeQuery = true)
+    Customer findByPassport(String passport);
+
 
 
 }

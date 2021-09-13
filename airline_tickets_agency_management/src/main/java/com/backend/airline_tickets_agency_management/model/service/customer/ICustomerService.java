@@ -1,8 +1,12 @@
 package com.backend.airline_tickets_agency_management.model.service.customer;
 
+import com.backend.airline_tickets_agency_management.model.dto.customer.CustomerDto;
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.BindingResult;
+
+import java.util.Map;
 
 public interface ICustomerService {
     Page<Customer> showListCustomer(Pageable pageable);
@@ -13,5 +17,7 @@ public interface ICustomerService {
 
     Customer findCustomerById(Long id);
 
-    Customer updateCustomer(Customer customer);
+    Map<String, Object> updateCustomer(Long id,CustomerDto customerDto,BindingResult bindingResult);
+
+    Map<String, Object> createCustomer(CustomerDto customerDto,BindingResult bindingResult);
 }

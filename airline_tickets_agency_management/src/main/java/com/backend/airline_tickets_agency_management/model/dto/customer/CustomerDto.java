@@ -1,27 +1,28 @@
 package com.backend.airline_tickets_agency_management.model.dto.customer;
-
+import com.backend.airline_tickets_agency_management.model.dto.validate.UniqueEmail;
+import com.backend.airline_tickets_agency_management.model.dto.validate.UniquePassport;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.validation.Validator;
 import java.util.List;
 
-public class CustomerDto {
+public class CustomerDto  {
     private Long customerId;
     private String customerCode;
     @NotBlank(message = "Tên không được để trống")
-    @Size(min= 6,message = "Tên ít nhất 6 ký tự")
+    @Size(min= 6,max = 20,message = "Tên từ 6-20 ký tự")
     private String customerName;
     @NotBlank(message = "Email không được để trống")
     @Email
     private String customerEmail;
     @NotBlank(message = "Số điện thoại không được để trống")
+    @Pattern(regexp = "^[0-9]{10}$",message = "Số điện thoại đúng định dạng")
     private String customerPhone;
+    @NotBlank
     private String customerGender;
     @NotBlank(message = "Không được để trống")
     private String customerBirthday;
@@ -30,6 +31,8 @@ public class CustomerDto {
     @NotBlank
     private String customerAddress;
     @NotBlank(message = "Không được để trống")
+    @NotBlank(message = "CMND không được để trống")
+    @Pattern(regexp = "^[0-9]{9}|[0-9]{12}$",message = "Số điện thoại đúng định dạng")
     private String customerPassport;
     private Boolean flag = true;
     private List<Ticket> tickets;
