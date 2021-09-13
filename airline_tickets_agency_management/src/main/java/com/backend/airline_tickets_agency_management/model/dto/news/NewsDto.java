@@ -1,12 +1,10 @@
 package com.backend.airline_tickets_agency_management.model.dto.news;
-
 import com.backend.airline_tickets_agency_management.model.entity.employee.Employee;
 import com.backend.airline_tickets_agency_management.model.entity.news.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.validation.constraints.*;
 
 

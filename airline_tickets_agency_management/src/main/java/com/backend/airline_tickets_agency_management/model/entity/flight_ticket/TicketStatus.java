@@ -1,8 +1,17 @@
 package com.backend.airline_tickets_agency_management.model.entity.flight_ticket;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ticket_status")
 public class TicketStatus {
     @Id
@@ -16,36 +25,4 @@ public class TicketStatus {
     @JsonBackReference
     private List<Ticket> tickets;
 
-    public TicketStatus() {
-    }
-
-    public TicketStatus(Long ticketStatusId, String ticketStatusName, List<Ticket> tickets) {
-        this.ticketStatusId = ticketStatusId;
-        this.ticketStatusName = ticketStatusName;
-        this.tickets = tickets;
-    }
-
-    public Long getTicketStatusId() {
-        return ticketStatusId;
-    }
-
-    public void setTicketStatusId(Long ticketStatusId) {
-        this.ticketStatusId = ticketStatusId;
-    }
-
-    public String getTicketStatusName() {
-        return ticketStatusName;
-    }
-
-    public void setTicketStatusName(String ticketStatusName) {
-        this.ticketStatusName = ticketStatusName;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
 }

@@ -28,6 +28,8 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:4200/")
 @RequestMapping("api/news")
 public class NewsRestController {
+
+
     private final IEmployeeService employeeService;
     private final INewsService newsService;
 

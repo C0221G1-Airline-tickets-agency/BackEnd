@@ -1,7 +1,5 @@
 package com.backend.airline_tickets_agency_management.model.entity.employee;
-
 import com.backend.airline_tickets_agency_management.model.entity.news.News;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,5 +30,4 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<News> news;
-
 }
