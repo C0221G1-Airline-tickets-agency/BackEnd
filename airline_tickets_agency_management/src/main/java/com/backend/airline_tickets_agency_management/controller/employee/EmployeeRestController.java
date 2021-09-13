@@ -96,7 +96,13 @@ public class EmployeeRestController {
 //        if (bindingResult.hasErrors()){
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
-        Employee employee = new Employee(addRequest.getEmployeeCode(), addRequest.getEmployeeName(), addRequest.getEmployeeBirthday(), addRequest.getEmployeeGender(), addRequest.getEmployeePhoneNumber(), addRequest.getEmployeeAddress(), addRequest.getEmployeeImage());
+        Employee employee = new Employee(addRequest.getEmployeeCode(),
+                addRequest.getEmployeeName(),
+                addRequest.getEmployeeBirthday(),
+                addRequest.getEmployeeGender(),
+                addRequest.getEmployeePhoneNumber(),
+                addRequest.getEmployeeAddress(),
+                addRequest.getEmployeeImage());
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
