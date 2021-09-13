@@ -1,44 +1,35 @@
-package com.backend.airline_tickets_agency_management.model.entity.employee;
-
-import com.backend.airline_tickets_agency_management.model.entity.news.News;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
+package com.backend.airline_tickets_agency_management.model.dto.employee;
 
 
-import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Entity
-@AllArgsConstructor
-@Table(name = "employee")
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class AddRequest {
+    @NotBlank
+    @Email
+    private String username;
+
+    //    @Size(max = 50)
+    private String userCode;
+    private Boolean isEnabled;
+
+    private String role;
+
+    @NotBlank
+    @Size(min = 6, max = 40)
+    private String password;
+
     private Long employeeId;
     private String employeeCode;
     private String employeeName;
-    @Column(columnDefinition = "date")
     private String employeeBirthday;
     private String employeeGender;
     private String employeePhoneNumber;
     private String employeeAddress;
     private String employeeImage;
     private boolean flag = true;
-    @OneToMany(mappedBy = "employee")
-    @JsonBackReference
-    private List<News> news;
-
-    public Employee(){
-    }
-
-    public Employee(String employeeCode, String employeeName, String employeeBirthday, String employeeGender, String employeePhoneNumber, String employeeAddress, String employeeImage) {
-        this.employeeCode = employeeCode;
-        this.employeeName = employeeName;
-        this.employeeGender = employeeGender;
-        this.employeePhoneNumber = employeePhoneNumber;
-        this.employeeAddress = employeeAddress;
-        this.employeeImage = employeeImage;
-    }
 
     public Long getEmployeeId() {
         return employeeId;
@@ -104,19 +95,51 @@ public class Employee {
         this.employeeImage = employeeImage;
     }
 
-    public List<News> getNews() {
-        return news;
-    }
-
-    public void setNews(List<News> news) {
-        this.news = news;
-    }
-
     public boolean isFlag() {
         return flag;
     }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
