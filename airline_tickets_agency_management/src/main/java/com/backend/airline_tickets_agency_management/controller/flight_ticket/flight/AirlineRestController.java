@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,11 +44,15 @@ public class AirlineRestController {
         }
     }
     @PostMapping(value= "/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Airline> createAirline(@RequestBody AirlineDto airline){
-        Airline airline1 = new Airline();
-        BeanUtils.copyProperties(airline,airline1);
-        this.airlineService.saveAirline(airline1);
-        return new ResponseEntity<>(airline1,HttpStatus.OK);
+    public ResponseEntity<List<ObjectError>> createAirline(@Valid @RequestBody AirlineDto airlineDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.OK);
+        }else {
+            Airline airline =new Airline();
+            BeanUtils.copyProperties(airlineDto,airline);
+            this.airlineService.saveAirline(airline);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
     }
 
     @DeleteMapping("{id}")

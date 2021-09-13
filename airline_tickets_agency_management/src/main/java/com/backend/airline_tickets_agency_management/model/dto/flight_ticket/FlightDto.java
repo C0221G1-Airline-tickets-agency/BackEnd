@@ -1,15 +1,21 @@
 package com.backend.airline_tickets_agency_management.model.dto.flight_ticket;
-
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Airline;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Location;
 import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.List;
 
-public class FlightDto {
+public class FlightDto implements Validator {
     private Long flightId;
     @NotBlank(message = "Not null")
     private String flightCode;
@@ -38,6 +44,21 @@ public class FlightDto {
     public FlightDto() {
         // default implementation ignored
     }
+
+    public FlightDto(Long flightId,String flightCode, String flightDate,  String departureTime,String endTime, Double flightPrice, Boolean flag,  Airline airline, List<Ticket> tickets,  Location locationTo, Location locationFrom) {
+        this.flightId = flightId;
+        this.flightCode = flightCode;
+        this.flightDate = flightDate;
+        this.departureTime = departureTime;
+        this.endTime = endTime;
+        this.flightPrice = flightPrice;
+        this.flag = flag;
+        this.airline = airline;
+        this.tickets = tickets;
+        this.locationTo = locationTo;
+        this.locationFrom = locationFrom;
+    }
+
 
     public Long getFlightId() {
         return flightId;
@@ -125,5 +146,33 @@ public class FlightDto {
 
     public void setLocationFrom(Location locationFrom) {
         this.locationFrom = locationFrom;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        FlightDto flightDto = (FlightDto) target;
+
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+        try {
+            Date startTime = hourFormat.parse(flightDto.departureTime);
+            Date endTime1 = hourFormat.parse(flightDto.endTime);
+            if(startTime.after(endTime1)){
+                errors.rejectValue("endTime","time.error","giờ đến phải lớn hơn giờ đi");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(flightDto.locationFrom.equals(flightDto.locationTo)) {
+            errors.rejectValue("locationFrom","location.error","Điểm đến ko được trùng với điểm đi");
+        }
+
+
+
     }
 }

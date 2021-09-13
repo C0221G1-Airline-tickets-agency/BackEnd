@@ -62,3 +62,4 @@ public class Destination {
         this.scenics = scenics;
     }
 }
+
