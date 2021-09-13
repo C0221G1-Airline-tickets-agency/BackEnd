@@ -32,6 +32,7 @@ public class TicketService implements ITicketService {
 
     @Override
     public void save(Ticket ticket) {
+        this.ticketRepository.save(ticket);
     }
 
     @Override
@@ -40,8 +41,8 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Page<Ticket> findAllByFilter(String passengerName, String chairName, String cityName, String flightDate, Pageable pageable) {
-        return this.ticketRepository.findAllByFilter(passengerName, chairName, cityName, flightDate, pageable);
+    public Page<Ticket> findAllByFilter(String passengerName, String ticketCode, String cityName, String flightDate, Pageable pageable) {
+        return this.ticketRepository.findAllByFilter(passengerName, ticketCode, cityName, flightDate, pageable);
     }
 
     @Override
@@ -63,4 +64,5 @@ public class TicketService implements ITicketService {
     public List<TicketCustomerDto> findAllTicketCustomerTransaction(Long id, Integer index) {
         return ticketRepository.findAllTicketCustomerTransaction(id,index);
     }
+
 }

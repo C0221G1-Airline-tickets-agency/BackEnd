@@ -19,7 +19,7 @@ public class FlightServiceImpl implements IFlightService {
 
     @Override
     public void deleteId(Long id) {
-       iFlightRepository.deleteById(id);
+        iFlightRepository.deleteById(id);
     }
 
     @Override
@@ -38,6 +38,16 @@ public class FlightServiceImpl implements IFlightService {
     }
 
     @Override
+    public Page<Flight> findByDepartureTime(String time, Pageable pageable) {
+        return iFlightRepository.findByDepartureTime(time,pageable);
+    }
+
+    @Override
+    public Page<Flight> findByAirline(String name, Pageable pageable) {
+        return iFlightRepository.findByAirline(name,pageable);
+    }
+
+    @Override
     public Flight findFlightById(Long id) {
         return iFlightRepository.findFlightById(id);
     }
@@ -46,4 +56,9 @@ public class FlightServiceImpl implements IFlightService {
     public Flight saveFlight(Flight flight) {
         return iFlightRepository.save(flight);
     }
+    @Override
+    public Page<Flight> findByDate(String date, Pageable pageable) {
+        return iFlightRepository.findByDate(date,pageable);
+    }
+
 }
