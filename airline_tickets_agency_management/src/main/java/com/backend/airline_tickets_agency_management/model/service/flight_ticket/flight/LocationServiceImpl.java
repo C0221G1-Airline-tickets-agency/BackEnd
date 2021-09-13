@@ -27,6 +27,7 @@ public class LocationServiceImpl implements ILocationService {
     }
 
 
+
     @Override
     public void removeLocation(Long id) {
         this.iLocationRepository.deleteById(id);

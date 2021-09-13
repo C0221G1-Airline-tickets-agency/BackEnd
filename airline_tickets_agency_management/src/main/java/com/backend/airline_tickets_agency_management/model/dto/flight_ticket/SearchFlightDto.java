@@ -14,5 +14,7 @@ String getPassengerType();
 String getPrice();
 String getLogo();
 String getTicketId();
-
+String getChairName();
+String getListId();
+String getLengthListId();
 }
