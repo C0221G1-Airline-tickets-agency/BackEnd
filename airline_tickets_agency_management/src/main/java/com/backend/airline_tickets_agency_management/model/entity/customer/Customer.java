@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,10 +29,8 @@ public class Customer {
     private String customerAddress;
     private String customerPassport;
     private Boolean flag = true;
-    @OneToMany(mappedBy = "customer")
-    @JsonBackReference
-    private List<Ticket> tickets;
     @OneToOne(mappedBy = "customer")
     private User user;
+
 
 }
