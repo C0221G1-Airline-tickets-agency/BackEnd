@@ -1,6 +1,6 @@
 package com.backend.airline_tickets_agency_management.model.entity.customer;
-import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
 import com.backend.airline_tickets_agency_management.model.entity.user.User;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +30,6 @@ public class Customer {
     private String customerPassport;
     private Boolean flag = true;
     @OneToOne(mappedBy = "customer")
+    @JsonBackReference
     private User user;
-
-
 }

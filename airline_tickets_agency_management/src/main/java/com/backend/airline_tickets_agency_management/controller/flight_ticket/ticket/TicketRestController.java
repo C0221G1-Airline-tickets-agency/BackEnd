@@ -101,6 +101,7 @@ public class TicketRestController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String array = listTicket.get().getEmail();
+
         Integer stt = 1;
         Double total = Double.valueOf(0);
         DecimalFormat format = new DecimalFormat("###,###,###");

@@ -31,7 +31,7 @@ public class FlightDto implements Validator {
     @NotNull(message = "Not null")
     private Double flightPrice;
 
-    private Boolean flag = true;
+    private boolean flag = true;
 
     @NotNull(message = "Not null")
     private Airline airline;
@@ -174,3 +174,4 @@ public class FlightDto implements Validator {
 
     }
 }
+
