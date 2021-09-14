@@ -1,4 +1,5 @@
 package com.backend.airline_tickets_agency_management.WebSecurityConfig;
+
 import com.backend.airline_tickets_agency_management.model.service.user.userDetail.UserDetailsServiceImpl;
 import com.backend.airline_tickets_agency_management.security.AuthEntryPointJwt;
 import com.backend.airline_tickets_agency_management.security.AuthTokenFilter;

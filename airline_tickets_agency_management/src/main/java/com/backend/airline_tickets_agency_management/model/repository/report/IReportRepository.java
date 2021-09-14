@@ -20,10 +20,10 @@ public interface IReportRepository extends JpaRepository<User, Long> {
             "on f.airline_id=a.airline_id\n" +
             "inner join ticket as t\n" +
             "on f.flight_id =t.flight_id\n" +
-            "inner join customer as c\n" +
-            "on t.customer_id =c.customer_id\n" +
             "inner join user as u\n" +
-            "on c.customer_id=u.customer_id\n" +
+            "on t.user_id=u.user_id\n" +
+            "inner join customer as c\n" +
+            "on u.customer_id =c.customer_id\n" +
             "inner join employee as e\n" +
             "on e.employee_id=u.employee_id\n" +
             "group by f.flight_date order by f.flight_date", nativeQuery = true)
@@ -38,10 +38,10 @@ public interface IReportRepository extends JpaRepository<User, Long> {
             "on f.airline_id=a.airline_id\n" +
             "inner join ticket as t\n" +
             "on f.flight_id =t.flight_id\n" +
+            "inner join user as u\n" +
+            "on t.user_id=u.user_id\n" +
             "inner join customer as c\n" +
-            "on t.customer_id =c.customer_id\n" +
-            "inner join `user` as u\n" +
-            "on c.customer_id=u.customer_id\n" +
+            "on u.customer_id =c.customer_id\n" +
             "inner join employee as e\n" +
             "on e.employee_id=u.employee_id\n" +
             "where f.flight_date between ? and ?\n" +
@@ -58,10 +58,10 @@ public interface IReportRepository extends JpaRepository<User, Long> {
             "on f.airline_id=a.airline_id\n" +
             "inner join ticket as t\n" +
             "on f.flight_id =t.flight_id\n" +
+            "inner join user as u\n" +
+            "on t.user_id=u.user_id\n" +
             "inner join customer as c\n" +
-            "on t.customer_id =c.customer_id\n" +
-            "inner join `user` as u\n" +
-            "on c.customer_id=u.customer_id\n" +
+            "on u.customer_id =c.customer_id\n" +
             "inner join employee as e\n" +
             "on e.employee_id=u.employee_id\n" +
             "where f.flight_date between ? and ?\n" +
@@ -76,10 +76,10 @@ public interface IReportRepository extends JpaRepository<User, Long> {
             "on f.airline_id=a.airline_id\n" +
             "inner join ticket as t\n" +
             "on f.flight_id =t.flight_id\n" +
+            "inner join user as u\n" +
+            "on t.user_id=u.user_id\n" +
             "inner join customer as c\n" +
-            "on t.customer_id =c.customer_id\n" +
-            "inner join `user` as u\n" +
-            "on c.customer_id=u.customer_id\n" +
+            "on u.customer_id =c.customer_id\n" +
             "inner join employee as e\n" +
             "on e.employee_id=u.employee_id\n" +
             "where f.flight_date between ? and ?\n" +

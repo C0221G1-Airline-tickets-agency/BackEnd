@@ -31,6 +31,4 @@ public class Customer {
     private Boolean flag = true;
     @OneToOne(mappedBy = "customer")
     private User user;
-
-
 }

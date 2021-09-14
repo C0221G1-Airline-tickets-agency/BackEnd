@@ -7,8 +7,8 @@ import com.backend.airline_tickets_agency_management.model.entity.employee.Emplo
 import com.backend.airline_tickets_agency_management.model.entity.user.ERole;
 import com.backend.airline_tickets_agency_management.model.entity.user.Role;
 import com.backend.airline_tickets_agency_management.model.entity.user.User;
+import com.backend.airline_tickets_agency_management.model.repository.user.IUserRepository;
 import com.backend.airline_tickets_agency_management.model.repository.user.RoleRepository;
-import com.backend.airline_tickets_agency_management.model.repository.user.UserRepository;
 import com.backend.airline_tickets_agency_management.model.service.employee.IEmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class EmployeeRestController {
     @Autowired
     IEmployeeService service;
     @Autowired
-    UserRepository userRepository;
+    IUserRepository userRepository;
     @Autowired
     PasswordEncoder encoder;
     @Autowired

@@ -33,8 +33,6 @@ public class User {
     @NotBlank
     @Email
     private String userName;
-
-    //    @Size(max = 20)
     private String userCode;
 
     @NotBlank
@@ -64,6 +62,7 @@ public class User {
 
 
     private Long customerTempId;
+
 
     public User() {
     }
