@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "location")
@@ -99,7 +97,5 @@ public class Location {
         return Objects.hash(locationId, cityName, airportName, areaCode);
     }
 
-
-
-
 }
+

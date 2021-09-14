@@ -199,4 +199,15 @@ public class CustomerService implements ICustomerService {
     public Customer findCustomerById(Long id) {
         return this.iCustomerRepository.findCustomerById(id);
     }
+
+    @Override
+    public void insertCustomer(String address, String birthday, String code, String email, String gender, String name, String nationality, String phone, Boolean flag, String passport) {
+        this.iCustomerRepository.insertCustomer(address, birthday, code, email, gender, name, nationality, phone, flag, passport);
+    }
+
+    @Override
+    public List<Customer> findAllNormal() {
+        return this.iCustomerRepository.findAllNormal();
+
+    }
 }
