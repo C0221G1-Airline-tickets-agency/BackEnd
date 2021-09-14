@@ -1,42 +1,38 @@
-package com.backend.airline_tickets_agency_management.model.entity.employee;
+package com.backend.airline_tickets_agency_management.model.dto.employee;
+
 import com.backend.airline_tickets_agency_management.model.entity.news.News;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
-@Entity
-@AllArgsConstructor
-@Table(name = "employee")
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployeeDto {
     private Long employeeId;
-    private String employeeCode;
-    private String employeeName;
-    private String employeeBirthday;
-    private String employeeGender;
-    private String employeePhoneNumber;
-    private boolean flag = true;
-    private String employeeAddress;
-    private String employeeImage;
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private List<News> news;
-    public Employee() {
-    }
 
-    public Employee(String employeeCode, String employeeName, String employeeBirthday, String employeeGender, String employeePhoneNumber, String employeeAddress, String employeeImage) {
-        this.employeeCode = employeeCode;
-        this.employeeName = employeeName;
-        this.employeeBirthday = employeeBirthday;
-        this.employeeGender = employeeGender;
-        this.employeePhoneNumber = employeePhoneNumber;
-        this.employeeAddress = employeeAddress;
-        this.employeeImage = employeeImage;
-    }
+    @NotBlank
+    private String employeeCode;
+
+    @NotBlank
+    @Size(min = 2)
+    private String employeeName;
+
+    @NotBlank
+    private String employeeBirthday;
+
+    @NotBlank
+    private String employeeGender;
+
+    @NotBlank
+    private String employeePhoneNumber;
+
+    @NotBlank
+    private String employeeAddress;
+
+    @NotBlank
+    private String employeeImage;
+    private boolean flag = true;
+    private List<News> news;
 
     public Long getEmployeeId() {
         return employeeId;
@@ -102,19 +98,19 @@ public class Employee {
         this.employeeImage = employeeImage;
     }
 
-    public List<News> getNews() {
-        return news;
-    }
-
-    public void setNews(List<News> news) {
-        this.news = news;
-    }
-
     public boolean isFlag() {
         return flag;
     }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
     }
 }

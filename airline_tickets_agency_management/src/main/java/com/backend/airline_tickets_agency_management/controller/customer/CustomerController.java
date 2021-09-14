@@ -33,7 +33,7 @@ public class CustomerController {
 
     @GetMapping("/findCustomerById")
     public ResponseEntity<User> getAdminById(@RequestParam(value = "id") Long id) {
-        User user = this.userService.findById(id);
+        User user = this.userService.findById(id).orElse(null);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
@@ -43,7 +43,7 @@ public class CustomerController {
 
     @PatchMapping("/changePassword")
     public ResponseEntity<Message> updatePasswordAdmin1(@RequestParam(value = "id") Long id, @RequestBody PasswordDto passwordDto) {
-        User user = this.userService.findById(id);
+        User user = this.userService.findById(id).orElse(null);
         System.out.println(passwordDto.getNewPassword());
         System.out.println(passwordDto.getOldPassword());
         System.out.println(user.getPassword());
