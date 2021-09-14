@@ -70,4 +70,14 @@ public class LocationRestController {
             return new ResponseEntity<>(location.get(),HttpStatus.OK);
         }
     }
+    @GetMapping()
+    public ResponseEntity<Location> findLocationByCityName(@RequestParam String cityName){
+        Optional<Location> location = this.locationService.findLocationByCityName(cityName);
+        if(!location.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(location.get(),HttpStatus.OK);
+        }
+
+    }
 }

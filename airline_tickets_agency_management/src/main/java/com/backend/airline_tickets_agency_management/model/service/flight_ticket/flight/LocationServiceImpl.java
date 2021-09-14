@@ -26,6 +26,10 @@ public class LocationServiceImpl implements ILocationService {
         return iLocationRepository.save(location);
     }
 
+    @Override
+    public Optional<Location> findLocationByCityName(String name) {
+        return iLocationRepository.findLocationByCityName(name);
+    }
 
     @Override
     public void removeLocation(Long id) {

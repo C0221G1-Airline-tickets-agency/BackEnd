@@ -9,4 +9,5 @@ public interface ILocationService {
     Optional<Location> findLocationById(Long id);
     Location saveLocation(Location location);
     void removeLocation(Long id);
+    Optional<Location> findLocationByCityName(String name);
 }
