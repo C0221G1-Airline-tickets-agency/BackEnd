@@ -153,6 +153,7 @@ public class TicketRestController {
             ticketDto.setPassengerIdCard("");
         }
         ticketDto.setTicketId(id);
+        ticketDto.setBookingDate(String.valueOf(LocalDate.now()));
 //        ticketDto.setTicketStatus(1);
         Ticket ticket= new Ticket();
         BeanUtils.copyProperties(ticketDto,ticket);

@@ -48,6 +48,7 @@ public class CustomerController {
         System.out.println(passwordDto.getOldPassword());
         System.out.println(user.getPassword());
         System.out.println(passwordDto.getConfirmPassword());
+
         if (user != null) {
             if (!checkRegex(passwordDto)) {
                 return new ResponseEntity<>(new Message("Mật khẩu không đúng định dạng"), HttpStatus.BAD_REQUEST);
