@@ -36,9 +36,17 @@ public class FlightRestController {
 
 
     @GetMapping("/flight")
-    public ResponseEntity<Page<Flight>> getAllFlight(@RequestParam Optional<String> flightCode, @RequestParam Optional<String> flightPrice, @RequestParam Integer page) {
+    public ResponseEntity<Page<Flight>> getAllFlight(@RequestParam Optional<String> flightCode,
+                                                     @RequestParam Optional<String> flightPrice,
+                                                     @RequestParam Optional<String> airlineName,
+                                                     @RequestParam Optional<String> departureTime,
+                                                     @RequestParam Optional<String> flightDate,
+                                                     @RequestParam Integer page) {
         String str1 = "";
         String str2= "";
+        String str3= "";
+        String str4= "";
+        String str5= "";
         if(flightCode.isPresent()){
             str1 = flightCode.get();
             Page<Flight> flights = this.flightService.findBycode(str1, PageRequest.of(page,5));
@@ -47,7 +55,20 @@ public class FlightRestController {
             str2 = flightPrice.get();
             Page<Flight> flights = this.flightService.findByPrice(str2,PageRequest.of(page,5));
             return new ResponseEntity<>(flights,HttpStatus.OK);
-        }else {
+        }else if(airlineName.isPresent()){
+            str3 = airlineName.get();
+            Page<Flight> flights = this.flightService.findByAirline(str3,PageRequest.of(page,5));
+            return new ResponseEntity<>(flights,HttpStatus.OK);
+        }else if(departureTime.isPresent()) {
+            str4 = departureTime.get();
+            Page<Flight> flights = this.flightService.findByDepartureTime(str4, PageRequest.of(page, 5));
+            return new ResponseEntity<>(flights, HttpStatus.OK);
+        }else if(flightDate.isPresent()) {
+
+            str5 = flightDate.get();
+            Page<Flight> flights = this.flightService.findByDate(str5, PageRequest.of(page, 5));
+            return new ResponseEntity<>(flights, HttpStatus.OK);
+        } else {
             Page<Flight> listFlight = this.flightService.findAllFlightPage(PageRequest.of(page,5));
             return new ResponseEntity<>(listFlight,HttpStatus.OK);
         }
@@ -97,8 +118,9 @@ public class FlightRestController {
     @PostMapping(value ="/flight/create")
     public ResponseEntity<List<ObjectError>> createFlight(@Valid @RequestBody FlightDto flightDTO, BindingResult bindingResult){
 
+        new FlightDto().validate(flightDTO,bindingResult);
         if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.OK);
         }else {
             Flight flight =new Flight();
             BeanUtils.copyProperties(flightDTO,flight);
@@ -107,13 +129,14 @@ public class FlightRestController {
         }
     }
 
-    @PutMapping(value ="/update/{id}")
+
+    @PutMapping(value ="/flight/update/{id}")
     public ResponseEntity<List<ObjectError>> updateFlight(@PathVariable Long id ,@Valid @RequestBody FlightDto flightDTO,BindingResult bindingResult){
         Flight flight = this.flightService.findFlightById(id);
         flightDTO.setFlightId(flight.getFlightId());
-
+        new FlightDto().validate(flightDTO,bindingResult);
         if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.OK);
         }else {
             Flight flight1 = new Flight();
             BeanUtils.copyProperties(flightDTO,flight1);
