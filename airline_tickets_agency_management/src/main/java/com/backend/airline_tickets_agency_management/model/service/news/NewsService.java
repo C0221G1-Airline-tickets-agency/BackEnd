@@ -13,13 +13,10 @@ import java.util.Optional;
 
 @Service
 public class NewsService implements INewsService{
-    private final INewsRepository newsRepository;
-    private final ICategoryRepository categoryRepository;
-    @Autowired
-    public NewsService(INewsRepository newsRepository, ICategoryRepository categoryRepository) {
-        this.newsRepository = newsRepository;
-        this.categoryRepository = categoryRepository;
-    }
+@Autowired
+private INewsRepository newsRepository;
+@Autowired
+private ICategoryRepository categoryRepository;
 
     @Override
     public Page<News> findAllWithKeyWord(Pageable pageable, String keyword) {
@@ -43,7 +40,7 @@ public class NewsService implements INewsService{
 
     @Override
     public void remove(Long id) {
-//        newsRepository.removeById(id);
+        newsRepository.deleteById(id);
     }
 
     @Override
@@ -54,5 +51,15 @@ public class NewsService implements INewsService{
     @Override
     public Optional<Category> getCategoryById(Long id) {
         return categoryRepository.findById(id);
+    }
+
+    @Override
+    public Page<News> getAllNews(Pageable pageable) {
+        return this.newsRepository.getAllNews(pageable);
+    }
+
+    @Override
+    public List<News> hotNews() {
+        return this.newsRepository.hotNews();
     }
 }

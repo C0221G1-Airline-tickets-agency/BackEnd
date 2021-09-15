@@ -1,6 +1,6 @@
-package com.backend.airline_tickets_agency_management.model.entity.destinations_scenic;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+package com.backend.airline_tickets_agency_management.model.entity.destinations_scenic;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,11 +14,9 @@ public class Destination {
     private String destinationName;
     private String destinationDescription;
     private String destinationImage;
+    private Integer flag;
     @OneToMany(mappedBy = "destination")
-    @JsonBackReference
     private List<Scenic> scenics;
-    public Destination() {
-    }
 
     public Long getDestinationId() {
         return destinationId;
@@ -59,4 +57,13 @@ public class Destination {
     public void setScenics(List<Scenic> scenics) {
         this.scenics = scenics;
     }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
 }
+

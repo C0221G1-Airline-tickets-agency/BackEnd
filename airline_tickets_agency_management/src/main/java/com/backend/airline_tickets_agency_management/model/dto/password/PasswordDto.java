@@ -1,17 +1,22 @@
 package com.backend.airline_tickets_agency_management.model.dto.password;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PasswordDto {
     private String oldPassword;
     private String newPassword;
-    private String confirmNewPassword;
+    private String confirmPassword;
 
     public PasswordDto() {
     }
 
-    public PasswordDto(String oldPassword, String newPassword, String confirmNewPassword) {
+    public PasswordDto(String oldPassword, String newPassword, String confirmPassword) {
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
-        this.confirmNewPassword = confirmNewPassword;
+        this.confirmPassword = confirmPassword;
     }
 
     public String getOldPassword() {
@@ -30,11 +35,12 @@ public class PasswordDto {
         this.newPassword = newPassword;
     }
 
-    public String getConfirmNewPassword() {
-        return confirmNewPassword;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setConfirmNewPassword(String confirmNewPassword) {
-        this.confirmNewPassword = confirmNewPassword;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }
+

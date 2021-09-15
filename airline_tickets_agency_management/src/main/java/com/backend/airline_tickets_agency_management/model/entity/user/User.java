@@ -1,6 +1,9 @@
 package com.backend.airline_tickets_agency_management.model.entity.user;
 import com.backend.airline_tickets_agency_management.model.entity.customer.Customer;
 import com.backend.airline_tickets_agency_management.model.entity.employee.Employee;
+import com.backend.airline_tickets_agency_management.model.entity.flight_ticket.Ticket;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +14,16 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "email"),
+                @UniqueConstraint(columnNames = "username"),
         })
 public class User {
     @Id
@@ -29,15 +32,17 @@ public class User {
 
     @NotBlank
     @Email
-    private String email;
-
-    @Size(max = 20)
+    private String userName;
     private String userCode;
 
     @NotBlank
     @Size(max = 120)
     private String password;
+
+
     private Boolean enabled;
+
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -51,6 +56,22 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id",unique = true)
     private Customer customer;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Ticket> tickets;
+
+
+    private Long customerTempId;
+
+
+    public User() {
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
 
     public Long getUserId() {
         return userId;
@@ -60,12 +81,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserCode() {
@@ -114,5 +135,13 @@ public class User {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Long getCustomerTempId() {
+        return customerTempId;
+    }
+
+    public void setCustomerTempId(Long customerTempId) {
+        this.customerTempId = customerTempId;
     }
 }
