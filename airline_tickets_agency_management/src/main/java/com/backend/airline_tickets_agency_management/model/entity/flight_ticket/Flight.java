@@ -38,11 +38,11 @@ public class Flight {
     private List<Ticket> tickets;
 
     @ManyToOne
-    @JoinColumn(name = "point_of_departure",referencedColumnName = "location_id")
+    @JoinColumn(name = "destination",referencedColumnName = "location_id")
     private Location locationTo;
 
     @ManyToOne
-    @JoinColumn(name = "destination",referencedColumnName = "location_id")
+    @JoinColumn(name = "point_of_departure",referencedColumnName = "location_id")
     private Location locationFrom;
 
     public Long getFlightId() {

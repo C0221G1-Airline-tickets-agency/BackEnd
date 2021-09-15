@@ -50,7 +50,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "LEFT JOIN location lFrom on f.destination = lFrom.location_id\n" +
             "LEFT JOIN location lTo on f.point_of_departure = lTo.location_id\n" +
             "LEFT JOIN `user` us on us.user_id = t.user_id\n" +
-            "WHERE us.customer_id = ?1 and t.ticket_status_id = '1'" +
+            "WHERE us.user_id = ?1 and t.ticket_status_id = '1'" +
             "LIMIT ?2,5", nativeQuery = true)
     List<TicketCustomerDto> findAllTicketCustomerBook(Long id, Integer index);
 
@@ -64,7 +64,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
             "            LEFT JOIN location lFrom on f.destination = lFrom.location_id\n" +
             "            LEFT JOIN location lTo on f.point_of_departure = lTo.location_id\n" +
             "            LEFT JOIN `user` us on us.user_id = t.user_id\n" +
-            "            WHERE us.customer_id = ?1\n" +
+            "            WHERE us.user_id = ?1\n" +
             "            LIMIT ?2,5", nativeQuery = true)
     List<TicketCustomerDto> findAllTicketCustomerTransaction(Long id, Integer index);
 
