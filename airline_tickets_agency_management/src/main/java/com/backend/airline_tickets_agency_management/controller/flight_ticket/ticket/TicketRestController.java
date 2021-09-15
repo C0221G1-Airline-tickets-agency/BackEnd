@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
+
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -142,10 +145,12 @@ public class TicketRestController {
     public ResponseEntity<Ticket> update(@PathVariable Long id, @Valid @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
         if (ticketDto == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        if (ticketDto.getPassengerIdCard().equals("000000001")){
+            ticketDto.setPassengerIdCard("");
         }
         ticketDto.setTicketId(id);
 //        ticketDto.setTicketStatus(1);
@@ -162,4 +167,23 @@ public class TicketRestController {
         }
         return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/manyticket/{listId}")
+    public ResponseEntity<List<Ticket>> findManyTicketById(@PathVariable Optional<String> listId) {
+        List<Ticket> listTicket = new ArrayList<>();
+        String[] arrayStr = listId.get().split(",");
+        for (int i=0;i< arrayStr.length;i++){
+            Optional<Ticket> ticket = ticketService.findById(Long.valueOf(arrayStr[i]));
+            if (ticket.isPresent()){
+                listTicket.add(ticket.get());
+            }
+
+        }
+        if (listTicket.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(listTicket, HttpStatus.OK);
+    }
+
+
 }
