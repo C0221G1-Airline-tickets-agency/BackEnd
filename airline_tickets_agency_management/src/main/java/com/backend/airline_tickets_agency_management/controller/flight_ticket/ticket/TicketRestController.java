@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -72,6 +74,22 @@ public class TicketRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
+    }
+    @GetMapping(value = "/manyticket/{listId}")
+    public ResponseEntity<List<Ticket>> findManyTicketById(@PathVariable Optional<String> listId) {
+        List<Ticket> listTicket = new ArrayList<>();
+        String[] arrayStr = listId.get().split(",");
+        for (int i=0;i< arrayStr.length;i++){
+            Optional<Ticket> ticket = ticketService.findById(Long.valueOf(arrayStr[i]));
+            if (ticket.isPresent()){
+                listTicket.add(ticket.get());
+            }
+
+        }
+        if (listTicket.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(listTicket, HttpStatus.OK);
     }
 
 }
