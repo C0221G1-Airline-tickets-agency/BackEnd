@@ -42,7 +42,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
 
     @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.city_name as pointOfDeparture, \n" +
             "lFrom.city_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
-            "(t.ticket_price+(t.ticket_price*ticket_type_price)+t.plus_baggage+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
+            "(t.ticket_price+(t.ticket_price*ticket_type_price)+(t.plus_baggage*1000)+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
             "ts.ticket_status_name as ticketStatusName\n" +
             "FROM ticket t\n" +
             "LEFT JOIN flight f on f.flight_id = t.flight_id\n" +
@@ -56,7 +56,7 @@ public interface ITicketRepository extends JpaRepository<Ticket, Long> {
 
     @Query(value = "SELECT t.ticket_id as ticketId,t.ticket_code as ticketCode,lTo.city_name as pointOfDeparture, \n" +
             "            lFrom.city_name as destination,t.booking_date as bookingDate,f.flight_date as flightDate,\n" +
-            "            (t.ticket_price+(t.ticket_price*ticket_type_price)+t.plus_baggage+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
+            "            (t.ticket_price+(t.ticket_price*ticket_type_price)+(t.plus_baggage*1000)+(t.ticket_price*t.tax)-(t.ticket_price*passenger_type_price)) as priceSell,\n" +
             "            ts.ticket_status_name as ticketStatusName\n" +
             "            FROM ticket t\n" +
             "            LEFT JOIN flight f on f.flight_id = t.flight_id\n" +
